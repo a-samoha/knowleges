@@ -1,13 +1,49 @@
+Из  javadoc:
 
-### Важно
+- Концепция как Java's BlockingQueue с суспензированием вместо блокирования
+
+- Варианты создания:
+	  - Channel<String>()  это  Channel(RENDEZVOUS)
+	  - Custom:   Channel(3,  DROP_OLDEST)   *ArrayList buffer
+	  - Channel(CONFLATED)  это  Channel(1,  DROP_OLDEST)
+	  - Channel(BUFFERED)  это  Channel(64,  SUSPEND)
+	  - Channel(BUFFERED, DROP_OLDEST)  это  Channel(1,  DROP_OLDEST)
+	  - Channel(UNLIMITED)  это  Channel(Int.MAX,  SUSPEND)   *LinkedList buffer
+
+- onUndeliveredElement вызывается (synchronously) в 3 случаях:
+	  - .send() выбрасывает ошибку
+	  - .receive()/.receiveOrNull()/.hasNext() выбрасывает ошибку
+	  - Сhannel was cancelled, а в буфере были елементы
+	  - Должна быть быстрой и НЕ бросать ошибок
+
+- НЕ дефолтный onBufferOverflow=DROP_OLDEST задает минимальное capacity = 1
+- Channel(UNLIMITED) игнорирует указанный DROP_OLDEST
+
+## Важно
 	.send(event)     - требует suspend
-					- используем при любом capacity
-					- 
+					  - используем при любом capacity
+					  
 	.trySend(evemt)  - требует suspend
 					- использолвать желательно только при capacity=1
 					- при capacity=0 ВАЖНО подписаться ДО .trySend(evemt)
 
-### Создание 
+![[Pasted image 20240409223600.png]]
+
+## Использование
+```kotlin
+private val _errors = Channel<MyExeption>()
+val errors = _errors.receiveAsFlow()
+...
+suspend fun doSmth(){
+	_error.send(MyExeption)
+}
+
+fun notSuspendDoSmth(){
+	_error.trySend(MyExeption)
+}
+```
+
+## Создание 
  ```kotlin
 val channel = Channel<String>(
     // дефолтное значение capacity=0. Буфера нет, 
@@ -22,8 +58,8 @@ val channel = Channel<String>(
 	// если capacity=0 вызвать метод tryReceive() 
 	// - при подписке ДО send/trySend() доставка Failed
 	// - при подписке ПОСЛЕ - все ок
-	capacity: Int = RENDEZVOUS,  
 	
+	capacity: Int = RENDEZVOUS,  
 	onBufferOverflow: BufferOverflow = BufferOverflow.SUSPEND,  
 	onUndeliveredElement: ((E) -> Unit)? = null
  )``` 
