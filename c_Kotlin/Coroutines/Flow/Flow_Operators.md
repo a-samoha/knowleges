@@ -46,7 +46,7 @@
 	- .shareIn(scope, SharingStarted.Eagerly)
 
 # Объединить
-
+[Хорошая статья](https://kt.academy/article/cc-flow-combine)
 ###### - БЕЗ преобразования  (НЕ меняется тип возвращаемого объекта)
 	- listOf(flow1, flow2).merge().collect{}
 				Ретранслирует эмиты из каждого потока в один общий

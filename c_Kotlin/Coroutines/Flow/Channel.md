@@ -1,8 +1,8 @@
 Из  javadoc:
 
-- Концепция как Java's BlockingQueue с суспензированием вместо блокирования
+- **Концепция** как Java's BlockingQueue с суспензированием вместо блокирования
 
-- Варианты создания:
+- **Варианты создания:**
 	  - Channel<String>()  это  Channel(RENDEZVOUS)
 	  - Custom:   Channel(3,  DROP_OLDEST)   *ArrayList buffer
 	  - Channel(CONFLATED)  это  Channel(1,  DROP_OLDEST)
@@ -10,7 +10,7 @@
 	  - Channel(BUFFERED, DROP_OLDEST)  это  Channel(1,  DROP_OLDEST)
 	  - Channel(UNLIMITED)  это  Channel(Int.MAX,  SUSPEND)   *LinkedList buffer
 
-- onUndeliveredElement вызывается (synchronously) в 3 случаях:
+- **onUndeliveredElement** вызывается (synchronously) в 3 случаях:
 	  - .send() выбрасывает ошибку
 	  - .receive()/.receiveOrNull()/.hasNext() выбрасывает ошибку
 	  - Сhannel was cancelled, а в буфере были елементы
@@ -23,7 +23,7 @@
 	.send(event)     - требует suspend
 					  - используем при любом capacity
 					  
-	.trySend(evemt)  - требует suspend
+	.trySend(evemt)  - НЕ требует suspend (вызывается из текущего потока)
 					- использолвать желательно только при capacity=1
 					- при capacity=0 ВАЖНО подписаться ДО .trySend(evemt)
 

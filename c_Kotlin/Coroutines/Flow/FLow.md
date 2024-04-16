@@ -9,13 +9,98 @@
 [Rx to Flow](https://habr.com/ru/companies/simbirsoft/articles/534706/)
 
 ###### Иерархия:
-Flow
-SharedFlow
-StateFlow
+`Flow`
+`SharedFlow<out T> : Flow<T>`
+`StateFlow<out T> : SharedFlow<T>`
 
-Flow — это, реактивный поток данных которые отправляет `emit()` эмиттер и собирает `collect()` подписчик.
+## Flow (Cold) 
+Flow — это, реактивный поток данных. 
+- в него отправляет `emit()` эмиттер и 
+- из него собирает `collect()` подписчик.
+- **Холодный** поток: "Один объект потока может иметь только одного подписчика. 
+  При каждой подписке - создается новый объект потока"
+  Превратить в горячий:  `.stateIn(CoroutineScope)` / `.shareIn()` / `.produceIn(CoroutineScope)`
+- Похоже на Single/Completable (но c одним или несколькими эмитами)
+- **Помрет** как только выплюнет последнее значение
+- желательно подчищать корутинские Job.   Напр.: `job.cancel()`
 
-Код для https://play.kotlinlang.org
+# Важно:  
+
+1)  .first() **НЕЛЬЗЯ** использовать!!!
+	- этот метод бросает NPE точнее "kotlin.UninitializedPropertyAccessException: lateinit property implementation has not been initialized"
+	- это происходит, если в .catch{} прилетает ошибка 
+	- **всегда используй .firstOrNull()**
+
+1) .emit(myValue)  -  требует suspend
+2) .tryEmit(myValue)  -  **НЕЕЕЕ требует suspend**!!!
+
+3) .observeOn() у RX переключает поток, в котором будут выполняться последующие операторы, 
+   [.flowOn()](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html) у Flow определяет диспетчер выполнения для предыдущих операторов.  
+  ```kotlin
+withContext(Dispatchers.Main) {
+    val singleValue = intFlow // will be executed on IO if context wasn't specified before
+        .map { ... }          // Will be executed in IO
+        .flowOn(Dispatchers.IO)
+        .filter { ... }       // Will be executed in Default
+        .flowOn(Dispatchers.Default)
+        .single()             // Will be executed in the Main
+}
+```
+	Метод collect() будет выполняться в том же диспетчере, что и launch, 
+	а emit данных будет происходить в Dispatchers.IO, 
+	в то время как метод subscribe() будет выполняться в Schedulers.single(), 
+	потому что идет после него.  
+  
+4) Flow, как и RxJava, представляет собой cold stream данных: до вызова методов collect() и subscribe() никакой обработки происходить не будет.  
+
+5) В RxJava нужно явно вызывать emitter.onComplete(). 
+	У Flow метод onCompletion() будет автоматически вызываться после окончания блока flow { }.  
+	 (когда все эмиты закончились)
+	
+6) Попытка сделать эмит из другого диспетчера (напр.: с помощью withContext) приведет к ошибке.
+7) Важно помнить, что нижестоящий подписчик также может быть самим потоком `Flow`,  создавая цепочку этапов обработки данных, где каждый этап собирает данные с предыдущего.
+# Создаем:
+	- flowOf(1, 2, 3) - поток с ограниченным кол. знач. (rx: Observable.fromArray(1, 2, 3))
+	- .asFlow()       - превращает Iterable, Sequence, массивы во flow
+	- flow { emit("value") }  -  внутри последовательные вызовы emit()
+	- channelFlow{ send("value") }  -  внутри асинхронные вызовы send() если сбор и отправку потока необходимо разделить на несколько сопрограмм
+# Настраиваем
+	- Промежуточные операторы: 
+	- .map{ it.toDomain() }, 
+	- .filter{ it.property == true }, 
+	- .take(), 
+	- .zip(), etc. 
+	- .stateIn(CoroutineScope)  -  превращаем в горячий StateFlow
+	- .shareIn(...)             -  превращаем в горячий SharedFlow
+	- .produceIn(CoroutineScope)
+	- указывают некие действия, которые потом будут вполнятся при эмитах
+# Подписываемся:
+	- Терминальные операторы:
+	- .collect{}
+	- .lounchIn(CoroutineScope)
+	- .firstOrNull()  // Всегда используй этот метод вместо .first() 
+	- .single()
+	- .reduce()
+	- .toList(), etc.
+	- .first() // НЕЛЬЗЯ использовать!!! ЕСЛИ прилетает ошибка в .catch{} приложение крашнется
+	напр: 
+```kotlin
+		lifecycleScope.LaunchWhenStarted{
+			viewModel.message // если это обычный Flow
+				.onEach{ textView.text = it}
+				.collect()
+			printLn("Hello World") // то эта строка ВЫПОЛНИТСЯ после получения последнего значения из flow
+		}
+		
+		// OR
+		
+		viewModel.message
+			.onEach{ textView.text = it}
+			.lounchIn(lifecycleScope)
+		printLn("Hello World") // эта строка ВЫПОЛНИТСЯ сразу "рядом" с подпиской на flow
+```
+
+[Вот так реализован Flow](https://play.kotlinlang.org) 
 ```kotlin
 import kotlinx.coroutines.*
 
@@ -55,73 +140,6 @@ fun interface FlowEmitter<T> {  // In original Kotlin it names FlowCollector BUT
     suspend fun emit(value: T)  // "emit" means: "Hey, FlowCollector, here is the value, take it and bring to the subscriber"
 }
 ```
-
-# Важно:  
-
-1)  myFlow.first()      НЕЛЬЗЯ использовать!!!
-	- этот метод бросает NPE точнее "kotlin.UninitializedPropertyAccessException: lateinit property implementation has not been initialized"
-	- это происходит, если в .catch{} прилетает ошибка 
-	- нужно всегда использовать myFlow.firstOrNull()
-
-1) .emit(myValue)  -  требует suspend
-2) .tryEmit(myValue)  -  НЕЕЕЕ требует suspend!!!
-
-3) .observeOn() у RX переключает поток, в котором будут выполняться последующие операторы, 
-   [.flowOn()](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html) у Flow определяет диспетчер выполнения для предыдущих операторов.  
-  ```kotlin
-withContext(Dispatchers.Main) {
-    val singleValue = intFlow // will be executed on IO if context wasn't specified before
-        .map { ... } // Will be executed in IO
-        .flowOn(Dispatchers.IO)
-        .filter { ... } // Will be executed in Default
-        .flowOn(Dispatchers.Default)
-        .single() // Will be executed in the Main
-}
-```
-
-3) Метод collect() будет выполняться в том же диспетчере, что и launch, а emit данных будет происходить в Dispatchers.IO, в то время как метод subscribe() будет выполняться в Schedulers.single(), потому что идет после него.  
-  
-4) Стандартные методы создания flow:  
-- flowOf(): в примере можно было бы использовать Observable.fromArray(1, 2, 3) и flowOf(1, 2, 3)
-- extenstion function asFlow(), который превращает Iterable, Sequence, массивы во flow
-- билдер flow { }
-5) Flow, как и RxJava, представляет собой cold stream данных: до вызова методов collect() и subscribe() никакой обработки происходить не будет.  
-6) В RxJava нужно явно вызывать emitter.onComplete(). У Flow метод onCompletion() будет автоматически вызываться после окончания блока flow { }.  
-7) При попытке сделать эмит данных из другого диспетчера, с помощью withContext, например, приведет к ошибке.
-8) Важно помнить, что нижестоящий подписчик также может быть самим потоком `Flow`,  создавая цепочку этапов обработки данных, где каждый этап собирает данные с предыдущего.
-
-
-# Подписываемся:
-
-	- myFlow.collect{}
-	- myFlow.lounchIn(Dispatchers.IO)
-	- myFlow.first() // НЕЛЬЗЯ использовать!!! ЕСЛИ прилетает ошибка в .catch{} приложение крашнется
-	- myFlow.firstOrNull()  // Всегда используй этот метод вместо .first() 
-
-
-
-Иерархия:
-## Flow (Cold) 
-- Mожет иметь только одного подписчика и при его появлении - поток перезапускается
-- Похоже на Single/Completable (но c одним или несколькими эмитами)
-- Помрет как только выплюнет последнее значение
-	напр: 
-```kotlin
-		lifecycleScope.LaunchWhenStarted{
-			viewModel.message // если это обычный Flow
-				.onEach{ textView.text = it}
-				.collect()
-			printLn("Hello World") // то эта строка ВЫПОЛНИТСЯ после получения последнего значения из flow
-		}
-		
-		// OR
-		
-		viewModel.message
-			.onEach{ textView.text = it}
-			.lounchIn(lifecycleScope)
-		printLn("Hello World") // эта строка ВЫПОЛНИТСЯ сразу "рядом" с подпиской на flow
-```
-- нужно подчищать корутинские Job.   Напр.: `job.cancel()`
 
 
 ## SharedFlow (Hot) 
