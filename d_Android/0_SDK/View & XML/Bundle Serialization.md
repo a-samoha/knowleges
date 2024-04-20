@@ -1,4 +1,6 @@
 
+home/Android/sdk/platforms/android-34/android.jar/android/os/Bundle
+
 1. B Bundle можно впихнуть лямбду, но этого НЕЛЬЗЯ делать!!!
    -  потому что если откроется звонилка - скрин пересоздастся, НО лямбда не сработает.
 ##### [getSerializableExtra and getParcelableExtra deprecated](https://stackoverflow.com/questions/72571804/getserializableextra-and-getparcelableextra-deprecated-what-is-the-alternative)

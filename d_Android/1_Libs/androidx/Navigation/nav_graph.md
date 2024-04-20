@@ -7,13 +7,12 @@ api ("androidx.navigation:navigation-ui-ktx:$nav_version")
 ```xml
 ...
 <androidx.fragment.app.FragmentContainerView  
-    android:id="@+id/fcv_nav_host"  
-    android:name="androidx.navigation.fragment.NavHostFragment"  
+    android:id="@+id/fcv_nav_host_fragment_activity_main"  
+    android:name="androidx.navigation.fragment.NavHostFragment" // подключает библиотеку навигации в Android
     android:layout_width="match_parent"  
     android:layout_height="match_parent"  
-    app:defaultNavHost="true"  
-    app:layout_constraintTop_toTopOf="parent"  
-    app:navGraph="@navigation/main" />
+    app:defaultNavHost="true"  // указывает, что "NavHostFragment" основной (обрабатывает системные нав. события, напр. "назад")
+    app:navGraph="@navigation/main" /> // ресурс нав. графа, отображает структуру навигации в приложении
 ```
 ### res/navigation/nav_graph
 1. In the 
