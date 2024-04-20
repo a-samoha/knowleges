@@ -1,0 +1,1 @@
+Store structured data in a private database using the Room persistence library.

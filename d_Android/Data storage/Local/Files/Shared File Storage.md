@@ -1,0 +1,1 @@
+Store files that your app intends to share with other apps, including media, documents, and other files.
