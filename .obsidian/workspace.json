@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "d_Android/0_SDK/0_android.jar.md",
+                "file": "d_Android/1_Libs/Compose/0_Overview.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "d_Android/0_SDK/0_android.jar.md",
+                "file": "d_Android/1_Libs/Compose/0_Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,9 +126,11 @@
   },
   "active": "57bf60fc63f44331",
   "lastOpenFiles": [
+    "d_Android/1_Libs/Compose/ConstraintLayout.md",
+    "d_Android/1_Libs/Compose/0_Overview.md",
+    "d_Android/0_SDK/0_android.jar.md",
     "d_Android/0_SDK/1_build-tools.md",
     "d_Android/0_SDK/2_platform-tools (adb).md",
-    "d_Android/0_SDK/0_android.jar.md",
     "d_Android/0_SDK/View & XML/Bundle Serialization.md",
     "d_Android/0_SDK/DVM vs ART.md",
     "d_Android/0_SDK/3_emulator.md",
@@ -154,8 +156,6 @@
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs",
     "d_Android/Data storage/Local/Files/File Storage -App-specific.md",
-    "d_Android/Data storage/Local/Files/File Storage -Shared.md",
-    "d_Android/Modules(Gradle)/Dependencies.md",
     "d_Android/-1_NDK",
     "d_Android/0_SDK",
     "d_Android/0_SDK/View & XML",
