@@ -2,7 +2,7 @@
 Содержит:
 
 	- android
-		- os (Bundle, Handler, Looper)
+		- os (Bundle, Parcelable, Handler, Looper)
 		- app (Activity, Service, AlertDialog)
 		- view (View)
 		- widget (Button, Toast, Toolbar)
@@ -11,6 +11,7 @@
 			- для низкого потребления памяти, 
 			- для исполнения на процессорах [RISC]-архитектур, используемых в мобильных устр.
 	- java
+		- io (Serializable)
 		- lang (Thread)
 	- org
 	- res

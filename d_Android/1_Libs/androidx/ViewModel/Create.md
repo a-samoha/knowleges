@@ -1,10 +1,9 @@
 # Compose
 
 ### CustomScreen.kt
-## [[Koin]]
+## Koin
 ```kotlin
-
-implimentation 'io.insert-koin:koin-androidx-compose:3.4.3'
+//implimentation 'io.insert-koin:koin-androidx-compose:3.4.3'
 import org.koin.androidx.compose.koinViewModel
 
 @Composable  
@@ -15,13 +14,11 @@ fun CustomScreen(
         PaintingsGrid()  
     }  
 }
-
 ```
 
-## [[Hilt]]
+## Hilt
 ```kotlin
-
-implimentation 'androidx.hilt:hilt-navigation-compose:2.44.2'
+//implimentation 'androidx.hilt:hilt-navigation-compose:2.44.2'
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable  
@@ -32,12 +29,11 @@ fun CustomScreen(
         PicturesGrid()  
     }  
 }
-
 ```
 
 ## Lifecycle
 ```kotlin
-implimentation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'  
+//implimentation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'  
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable  
@@ -55,34 +51,49 @@ fun CustomScreen(
 
 ### TooltipDialogScreen (Fragment) 
 ### Для Activity все то же самое
-## [[Koin]]
+## Koin
 
 ```kotlin  
-api 'io.insert-koin:koin-android:3.4.3'
+//api 'io.insert-koin:koin-android:3.4.3'
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TooltipDialogScreen : BottomSheetDialogFragment() {
-    private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) } // viewModel это extention fun для Fragment
+	// viewModel это extention fun для Fragment
+    private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) } 
 }
 ```
 
-## [[Hilt]]
+## Hilt
 ```kotlin  
 //api 'io.insert-koin:koin-android:3.4.3'  ?????
-//import org.koin.androidx.viewmodel.ext.android.viewModel  ????
+import org.koin.androidx.viewmodel.ext.android.viewModel  ????
 
 class TooltipDialogScreen : BottomSheetDialogFragment() {
-    // private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) }  // Hilt
+    private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) }  // Hilt
 }
 ```
 
 ## Lifecycle
 ```kotlin  
-//api 'io.insert-koin:koin-android:3.4.3'  ?????
-//import org.koin.androidx.viewmodel.ext.android.viewModel  ????
+//implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$2.7.0"
+import androidx.lifecycle.ViewModel  
+import androidx.lifecycle.viewModelScope
+
+class TooltipDialogViewModel: ViewModel(){}
+...
+
+// implementation("androidx.activity:activity-ktx:1.8.2")
+import androidx.activity.viewModels
+
+class MainActivity: AppCompatActivity() {  
+    private val viewModel by viewModels<MainViewModel>() 
+}
+
+// implementation("androidx.fragment:fragment-ktx:1.7.0")
+import androidx.fragment.viewModels
 
 class TooltipDialogScreen : BottomSheetDialogFragment() {
-    // private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) }  // Hilt
+    private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) }  // Hilt
 }
 ```
 
