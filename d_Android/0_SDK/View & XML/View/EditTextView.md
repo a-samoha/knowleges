@@ -1,3 +1,5 @@
+
+
 fragment.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -19,7 +21,10 @@ fragment.xml
 	        ...  
 	        android:digits="abcdefg 0123456789-"  // ограничивает разрешенные символы указанными в строке
 	        android:singleLine="true"
-	        android:inputType="number" />  
+	        // android:inputType="number" -  откроет клавиатуру с кнопками
+	        android:inputType="text"
+	        android:imeOptions="actionDone" // нажатие на кнопку "enter" - сворачивает клаву (вместо новой строки)
+			/>  
 	</com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

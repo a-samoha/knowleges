@@ -93,7 +93,7 @@ class MainActivity: AppCompatActivity() {
 import androidx.fragment.viewModels
 
 class TooltipDialogScreen : BottomSheetDialogFragment() {
-    private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) }  // Hilt
+    private val viewModel by viewModel<TooltipDialogViewModel> { parametersOf(arguments) } 
 }
 ```
 

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "d_Android/0_SDK/View & XML/View/EditTextView.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "d_Android/0_SDK/View & XML/View/EditTextView.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,9 +126,10 @@
   },
   "active": "57bf60fc63f44331",
   "lastOpenFiles": [
+    "d_Android/1_Libs/androidx/ViewModel/Create.md",
+    "README.md",
     "Koin.md",
     "Hilt.md",
-    "d_Android/1_Libs/androidx/ViewModel/Create.md",
     "d_Android/1_Libs/androidx/ViewModel/aLinks.md",
     "d_Android/1_Libs/Compose/0_Overview.md",
     "d_Android/0_SDK/View & XML/Bundle/onSaveInstantState.md",
@@ -153,7 +154,6 @@
     "d_Android/0_SDK/View & XML/View/CardView.md",
     "d_Android/0_SDK/View & XML/View/Button.md",
     "d_Android/0_SDK/View & XML/View/BottomSheetDialog.md",
-    "d_Android/0_SDK/View & XML/View/Alert Dialog.md",
     "d_Android/1_Libs/androidx",
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs",
