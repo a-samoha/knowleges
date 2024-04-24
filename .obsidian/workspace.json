@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "d_Android/0_SDK/View & XML/View/EditTextView.md",
+                "file": "d_Android/Modules(Gradle)/Multi modules (groovy).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "d_Android/0_SDK/View & XML/View/EditTextView.md",
+                "file": "d_Android/Modules(Gradle)/Multi modules (groovy).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,6 +126,14 @@
   },
   "active": "57bf60fc63f44331",
   "lastOpenFiles": [
+    "d_Android/Modules(Gradle)/build.gradle.kts (kotlin).md",
+    "d_Android/Modules(Gradle)/build.gradle (groovy).md",
+    "d_Android/Modules(Gradle)/Dependencies.md",
+    "d_Android/Modules(Gradle)/Multi modules (groovy).md",
+    "d_Android/Modules(Gradle)/CICD.md",
+    "d_Android/Modules(Gradle)/aGradle.md",
+    "d_Android/0_SDK/View & XML/c_xml/DataBinding.md",
+    "d_Android/0_SDK/View & XML/View/EditTextView.md",
     "d_Android/1_Libs/androidx/ViewModel/Create.md",
     "README.md",
     "Koin.md",
@@ -145,23 +153,15 @@
     "d_Android/0_SDK/2_platform-tools (adb).md",
     "d_Android/0_SDK/DVM vs ART.md",
     "d_Android/0_SDK/3_emulator.md",
-    "d_Android/1_Libs/androidx/Navigation/nav_graph.md",
-    "d_Android/1_Libs/Navigation/Manual.md",
-    "d_Android/0_SDK/View & XML/View/SupportFragmentManager.md",
-    "d_Android/1_Libs/Navigation/Ciceron.md",
     "d_Android/1_Libs/androidx/Navigation",
-    "d_Android/0_SDK/View & XML/c_xml/DataBinding.md",
-    "d_Android/0_SDK/View & XML/View/CardView.md",
-    "d_Android/0_SDK/View & XML/View/Button.md",
-    "d_Android/0_SDK/View & XML/View/BottomSheetDialog.md",
     "d_Android/1_Libs/androidx",
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs",
     "d_Android/-1_NDK",
     "d_Android/0_SDK",
     "d_Android/0_SDK/View & XML",
-    "d_Android/Data storage/Remote",
-    "d_Android/Data storage/Local/Files",
+    "d_Android/1_Libs/Data storage/Remote",
+    "d_Android/1_Libs/Data storage/Local/Files",
     "zz_assets/Pasted image 20240409223600.png",
     "zz_assets/Pasted image 20240312213103.png",
     "QA/Pasted image 20240220212427.png",

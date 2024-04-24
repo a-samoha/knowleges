@@ -1,4 +1,4 @@
 #Gradle
 
-[[groovy (AS-def)]]
-[[dsl (kts)]]
+[[build.gradle (groovy)]]
+[[build.gradle.kts (kotlin)]]

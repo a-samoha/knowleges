@@ -2,7 +2,6 @@
 [Documentation](https://developer.android.com/topic/libraries/data-binding/expressions#java)
 -   [Android Data Binding codelab](https://codelabs.developers.google.com/codelabs/android-databinding)
 
-
 ## build.gradle
 ```kotlin
 android {

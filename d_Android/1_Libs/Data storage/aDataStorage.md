@@ -15,4 +15,4 @@
 	-   [[File Storage -Shared]] : 
 		Store files that your app intends to share with other apps, including media, documents, and other files.
 
--   [[d_Android/Data storage/Remote/Retrofit]] : 
+-   [[Retrofit]] : 
