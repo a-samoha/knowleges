@@ -7,7 +7,7 @@
 		 - `Это происходит потому, что Composition рекурсивная структура данных. `
 		 - `Каждый компонент сам является Composition.`
 		 - `У каждого Composition свой Lifecycle (вложенные могут умирать раньше)` 
-	- `remember кеширует данные ровно пока, живет Composition в которой оно вызвано`
+	- `remember кеширует данные ровно пока, живет Composition в которой он вызвано`
 
 ### Lifecycle  (типа: onCreate, onUpdate,onDestroy)
 ![[Pasted image 20231220190406.png]]

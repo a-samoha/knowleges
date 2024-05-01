@@ -129,32 +129,62 @@ data class TmpState(
 
 -  Используем Saver
 ```kotlin
-companion object {
-	val Saver: Saver<CustomState, *> = Saver(
-		save = { state: CustomState -> 
-			ParcelableCheckboxesState(
-				checkedItems = state.checkableItems.map{
-					ParcelableCheckableItem(
-						it.title,
-						it.isChecked.value,
-					)
-				}
-			)
-		},
-		restore = { state: ParcelableCheckboxesState -> 
-			CustomState(
-				checkableItems = state.checkedItems.map{
-					CheckableItem(
-						it.title,
-						mutableStateOf(it.isChecked)
-					)
-				}
-			)
-		}
-	)
-}
-```
+data class CheckableItem(
+	val title: String,
+	val isChecked: MutableState<Boolean>,
+)
 
+data class CheckBoxesState(
+	val checkableItems: List<CheckableItem>,
+){
+	
+	companion object {
+		val Saver: Saver<CheckBoxesState, *> = Saver(
+			save = { state: CheckBoxesState -> 
+				ParcelableCheckboxesState(
+					checkedItems = state.checkableItems.map{
+						ParcelableCheckableItem(
+							it.title,
+							it.isChecked.value,
+						)
+					}
+				)
+			},
+			restore = { state: ParcelableCheckboxesState -> 
+				CheckBoxesState(
+					checkableItems = state.checkedItems.map{
+						CheckableItem(
+							it.title,
+							mutableStateOf(it.isChecked)
+						)
+					}
+				)
+			}
+		)
+	}
+}
+
+@Parcelize
+data class ParcelableCheckableItem(
+	val title: String,
+	val isChecked: Boolean,
+) : Parcelable
+
+@Parcelize
+data class ParcelableCheckboxesState(  
+	val checkedItems: List<ParcelableCheckableItem>
+) : Parcelable
+
+@Composable  
+fun TmpScreen() {  
+	val uiState = rememberSaveable(
+		saver = CheckBoxesState.Saver
+	){
+		CheckBoxesState( ... )
+	}
+}
+
+```
 
 
 

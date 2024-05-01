@@ -4,7 +4,7 @@ Pure function  -  при одних и тех же входных данных, 
 - [[#Side Effect]]
 - [[#LaunchedEffect - для suspend]]
 - [[#DisposableEffect - аналог LaunchedEffect для callback]]
-- [[Lifecycle#derivedStateOf{}|derivedStateOf]]
+- [[1_Lifecycle#derivedStateOf{}|derivedStateOf]]
 - snapshotFlow
 - rememberUpdateState
 - rememberCoroutineScope
