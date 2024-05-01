@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/4_Компоненты.md",
+                "file": "d_Android/1_Libs/androidx/Compose/1_State.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/4_Компоненты.md",
+                "file": "d_Android/1_Libs/androidx/Compose/1_State.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +126,11 @@
   },
   "active": "b8b1a9369d8d1676",
   "lastOpenFiles": [
+    "d_Android/0_SDK/View & XML/Bundle/Parcelize.md",
     "d_Android/1_Libs/androidx/Compose/1_State.md",
+    "d_Android/1_Libs/androidx/Compose/4_Компоненты.md",
+    "d_Android/1_Libs/androidx/Compose/3_SideEffect.md",
+    "d_Android/1_Libs/androidx/Compose/2_CompositionLocal.md",
     "d_Android/1_Libs/androidx/Compose/0_Overview.md",
     "d_Android/1_Libs/androidx/Navigation/nav_graph.md",
     "d_Android/1_Libs/Navigation/Manual.md",
@@ -145,14 +149,10 @@
     "Hilt.md",
     "d_Android/1_Libs/androidx/ViewModel/aLinks.md",
     "d_Android/0_SDK/View & XML/Bundle/onSaveInstantState.md",
-    "d_Android/0_SDK/View & XML/Bundle/Parcelize.md",
     "d_Android/0_SDK/View & XML/Bundle/Serialization.md",
     "Untitled.md",
     "d_Android/0_SDK/0_android.jar.md",
     "d_Android/0_SDK/View & XML/Bundle",
-    "d_Android/0_SDK/View & XML/Untitled.md",
-    "d_Android/0_SDK/View & XML/View/RecyclerView.md",
-    "d_Android/1_Libs/androidx/Compose/ConstraintLayout.md",
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs/androidx",
     "d_Android/1_Libs/androidx/Navigation",

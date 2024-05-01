@@ -1,19 +1,12 @@
 
-[Roman - (State) в Jetpack Compose, частина 2](https://www.youtube.com/watch?v=C_h2RVPUxSw&list=PLRmiL0mct8WkFdcvOCi06_64_ec3B2jvx&index=8)
-### выучить наизусть (ката)
+[Roman - (State) в Jetpack Compose, частина 1](https://www.youtube.com/watch?v=nLXjIZs3G9I&list=PLRmiL0mct8WkFdcvOCi06_64_ec3B2jvx&index=7&pp=iAQB)
+выучить наизусть (ката)
+### Вариант1 со Stateful функцией
+
 ```kotlin
-
-// вар2
-// import androidx.compose.runtime.getValue
-// import androidx.compose.runtime.setValue
-
-data class TmpState(  
-	var number: Short = 0  
-)  
-
 /**
-* Stateful - функция, у которой State хранится внутри и снаружи его НЕ видно
-* Stateless- НЕТ внутреннего State, он передается в параметры
+* Stateful  - функция, у которой State создается, меняется и хранится внутри (снаружи его НЕ видно)
+* Stateless - НЕТ внутреннего State, он передается в параметры
 *  
 * Flutter: StatefulWidget, StatelessWidget 
 * 
@@ -21,13 +14,52 @@ data class TmpState(
 */
 @Preview(showSystemUi = true)  
 @Composable  
-fun TmpScreen() {  
-	// если удалить remember, то mutableStateOf будет пересоздаваться при рекомпозиции
+fun SomeScreen() {
+	// remember{}  -  кеширует объект из лямбды при первой композиции и больше НЕ пересоздает его (при рекомпозиции)
 	// rememberSaveable - сохраняет данные в Bundle (сериализация) при повороте экрана
-	// вар1 с обычным stateFlow
-	val uiState = remember {  
-		mutableStateOf(TmpState(Random.nextInt(1000).toShort()))  
-	}
+	// rememberSaveable может принимать реализацию интерфейса Saver в которой мы должны настроить логику сериализации
+	val uiState = remember{ mutableStateOf(0) } // 
+	
+	Column(  
+		verticalArrangement = Arrangement.Center,  
+		horizontalAlignment = BiasAlignment.Horizontal(0.5f),  
+		modifier = Modifier.fillMaxSize(),  
+	) {  
+		Text(
+			text = uiState.value.toString(), // 
+			fontSize = 60.sp,  
+			fontWeight = FontWeight.Bold,  
+			fontFamily = FontFamily.Monospace,  
+		)  
+		Spacer(modifier = Modifier.height(12.dp))  
+		Button(onClick = {  
+			uiState.value++ 
+		}) {  
+			Text(text = "Increment", fontSize = 18.sp)  
+		}  
+	}  
+}
+```
+
+### Вариант2 с UiStateModel (Stateful) 
+
+```kotlin
+// импорты для вар3 с Kotlin delegation
+// import androidx.compose.runtime.getValue
+// import androidx.compose.runtime.setValue
+
+data class TmpState(  // UiStateModel
+	val number: Short = 0  
+)  
+
+@Preview(showSystemUi = true)  
+@Composable  
+fun TmpScreen() {  
+	
+	// вар1 с обычным StateFlow
+	// val uiState = remember {  
+	// 	  mutableStateOf(TmpState(Random.nextInt(1000).toShort()))  
+	// }
 	
 	// вар2 Kotlin Destruction
 	// val (value, setValue) = remember {  
@@ -40,30 +72,22 @@ fun TmpScreen() {
 	//    mutableStateOf(TmpState(Random.nextInt(1000).toShort()))  
 	// }
 	  
-	Column(  
-		verticalArrangement = Arrangement.Center,  
-		horizontalAlignment = BiasAlignment.Horizontal(0.5f),  
-		modifier = Modifier.fillMaxSize(),  
-	) {  
+	Column() {  
 		Text(
 			// вар1  
-			text = uiState.value.number.toString(),  
+			// text = uiState.value.number.toString(),  
 			
 			// вар2  
 			// text = value.number.toString(),
 			
 			// вар3
 			// text = uiState.number.toString(),
-			
-			fontSize = 60.sp,  
-			fontWeight = FontWeight.Bold,  
-			fontFamily = FontFamily.Monospace,  
 		)  
 		Spacer(modifier = Modifier.height(12.dp))  
 		Button(onClick = {  
 			// вар1
-			val newVal = (uiState.value.number + 1).toShort()  
-			uiState.value = uiState.value.copy(number = newVal)
+			// val newVal = (uiState.value.number + 1).toShort()  
+			// uiState.value = uiState.value.copy(number = newVal)
 			
 			// вар2
 			// val newVal = (value.number + 1).toShort()  
