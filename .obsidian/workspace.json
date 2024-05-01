@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "82c5c6e3b2c78956",
+        "id": "9f7db9ef5e0cffd0",
         "type": "tabs",
         "children": [
           {
-            "id": "57bf60fc63f44331",
+            "id": "b8b1a9369d8d1676",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "d_Android/0_SDK/View & XML/View/ImageView.md",
+                "file": "d_Android/1_Libs/androidx/Compose/4_Компоненты.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "d_Android/0_SDK/View & XML/View/ImageView.md",
+                "file": "d_Android/1_Libs/androidx/Compose/4_Компоненты.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,8 +124,14 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "57bf60fc63f44331",
+  "active": "b8b1a9369d8d1676",
   "lastOpenFiles": [
+    "d_Android/1_Libs/androidx/Compose/1_State.md",
+    "d_Android/1_Libs/androidx/Compose/0_Overview.md",
+    "d_Android/1_Libs/androidx/Navigation/nav_graph.md",
+    "d_Android/1_Libs/Navigation/Manual.md",
+    "README.md",
+    "d_Android/0_SDK/View & XML/View/ImageView.md",
     "d_Android/Modules(Gradle)/Multi modules (groovy).md",
     "d_Android/Modules(Gradle)/build.gradle.kts (kotlin).md",
     "d_Android/Modules(Gradle)/build.gradle (groovy).md",
@@ -135,11 +141,9 @@
     "d_Android/0_SDK/View & XML/c_xml/DataBinding.md",
     "d_Android/0_SDK/View & XML/View/EditTextView.md",
     "d_Android/1_Libs/androidx/ViewModel/Create.md",
-    "README.md",
     "Koin.md",
     "Hilt.md",
     "d_Android/1_Libs/androidx/ViewModel/aLinks.md",
-    "d_Android/1_Libs/Compose/0_Overview.md",
     "d_Android/0_SDK/View & XML/Bundle/onSaveInstantState.md",
     "d_Android/0_SDK/View & XML/Bundle/Parcelize.md",
     "d_Android/0_SDK/View & XML/Bundle/Serialization.md",
@@ -148,11 +152,7 @@
     "d_Android/0_SDK/View & XML/Bundle",
     "d_Android/0_SDK/View & XML/Untitled.md",
     "d_Android/0_SDK/View & XML/View/RecyclerView.md",
-    "d_Android/1_Libs/Compose/ConstraintLayout.md",
-    "d_Android/0_SDK/1_build-tools.md",
-    "d_Android/0_SDK/2_platform-tools (adb).md",
-    "d_Android/0_SDK/DVM vs ART.md",
-    "d_Android/0_SDK/3_emulator.md",
+    "d_Android/1_Libs/androidx/Compose/ConstraintLayout.md",
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs/androidx",
     "d_Android/1_Libs/androidx/Navigation",
