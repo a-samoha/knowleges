@@ -4,22 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "621d140126ba8b38",
+        "id": "99fc898830d66d24",
         "type": "tabs",
         "children": [
           {
-            "id": "e27e5c8db2ba01d3",
+            "id": "ab4a79579e148792",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/3_Modifier.md",
+                "file": "d_Android/1_Libs/androidx/Compose/0_Overview.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c663dcd0886d30f7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "d_Android/1_Libs/androidx/Compose/4_ConstraintLayout.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,7 +82,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5
+    "width": 297.5
   },
   "right": {
     "id": "7dff784af80a6780",
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/3_Modifier.md",
+                "file": "d_Android/1_Libs/androidx/Compose/4_ConstraintLayout.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,55 +137,55 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "e27e5c8db2ba01d3",
+  "active": "c663dcd0886d30f7",
   "lastOpenFiles": [
-    "d_Android/1_Libs/androidx/Compose/2_State.md",
-    "d_Android/1_Libs/androidx/Compose/4_CompositionLocal.md",
-    "d_Android/1_Libs/androidx/Compose/3_Modifier.md",
-    "d_Android/1_Libs/androidx/Compose/1_Lifecycle.md",
+    "d_Android/1_Libs/androidx/Compose/5_Компоненты.md",
+    "d_Android/1_Libs/androidx/Compose/4_Компоновщики.md",
     "d_Android/1_Libs/androidx/Compose/0_Overview.md",
-    "d_Android/1_Libs/androidx/Compose/4_Компоненты.md",
+    "d_Android/1_Libs/androidx/Compose/3_Modifier.md",
+    "d_Android/1_Libs/androidx/Compose/2_State.md",
+    "d_Android/1_Libs/androidx/Compose/1_Lifecycle.md",
+    "d_Android/1_Libs/androidx/Compose/1_State.md",
     "zz_assets/composition.png",
-    "Pasted image 20240501211150.png",
-    "c_Kotlin/Coroutines/Flow/Channel.md",
-    "Code example.md",
-    "Untitled.md",
-    "c_Kotlin/Collections/List, Set, Map.md",
-    "b_server/linux cmd/linux cmd.md",
-    "b_server/linux cmd/ps - обзор процессов.md",
-    "a_RoadMap.md",
-    "общее/Фразы из сочинений.md",
-    "общее/WL projects.md",
-    "общее/win_btn.md",
-    "общее/ShiftHackZ.md",
-    "общее/html-css.md",
-    "общее/google_docs.md",
-    "общее/english.md",
-    "общее/alpha_beta.md",
-    "a_Architecture/Команда.md",
-    "b_TDD/d_Test/@Test.md",
-    "b_TDD/Роберт Мартин.md",
-    "b_TDD/ZendeskSupportRepositoryTest.md",
-    "b_TDD/InputPhoneViewModelTest.md",
-    "d_Android/c_xml",
-    "d_Android/Navigation/Untitled",
-    "d_Android/Navigation",
-    "ЧИТАЙ/Котлин.pdf",
+    "d_Android/1_Libs/androidx/Compose/4_CompositionLocal.md",
+    "d_Android/0_SDK/View & XML/Bundle/Parcelize.md",
+    "d_Android/1_Libs/androidx/Compose/3_SideEffect.md",
+    "d_Android/1_Libs/androidx/Compose/2_CompositionLocal.md",
+    "d_Android/1_Libs/androidx/Navigation/nav_graph.md",
+    "d_Android/1_Libs/Navigation/Manual.md",
+    "README.md",
+    "d_Android/0_SDK/View & XML/View/ImageView.md",
+    "d_Android/Modules(Gradle)/Multi modules (groovy).md",
+    "d_Android/Modules(Gradle)/build.gradle.kts (kotlin).md",
+    "d_Android/Modules(Gradle)/build.gradle (groovy).md",
+    "d_Android/Modules(Gradle)/Dependencies.md",
+    "d_Android/Modules(Gradle)/CICD.md",
+    "d_Android/Modules(Gradle)/aGradle.md",
+    "d_Android/0_SDK/View & XML/c_xml/DataBinding.md",
+    "d_Android/0_SDK/View & XML/View/EditTextView.md",
+    "d_Android/1_Libs/androidx/ViewModel/Create.md",
+    "Koin.md",
+    "Hilt.md",
+    "d_Android/0_SDK/View & XML/Bundle",
+    "d_Android/1_Libs/androidx/Navigation",
+    "d_Android/1_Libs/androidx",
+    "d_Android/1_Libs/androidx/Navigation",
+    "d_Android/1_Libs",
+    "d_Android/-1_NDK",
+    "d_Android/0_SDK",
+    "d_Android/0_SDK/View & XML",
+    "d_Android/1_Libs/Data storage/Remote",
+    "d_Android/1_Libs/Data storage/Local/Files",
+    "zz_assets/Pasted image 20240409223600.png",
     "zz_assets/Pasted image 20240312213103.png",
     "QA/Pasted image 20240220212427.png",
     "Untitled.canvas",
     "zz_assets/mvi.jpg",
     "zz_assets/mvi_cyclic.png",
     "Pasted image 20240220212422.png",
-    "QA/Dictionary.pdf",
-    "QA/TestRail_створення_тест_кейсу_(Реєстрація).pdf",
     "zz_assets/Pasted image 20240220210300.png",
     "Pasted image 20240220212346.png",
-    "Реєстрація_в_TestRail_та_створення_першого_тест_кейсу.pdf",
-    "a_Architecture/Tools",
     "zz_assets/Pasted image 20240220153832.png",
-    "Команда",
-    "QA",
     "d_Android/Untitled.canvas",
     "Untitled 1.canvas"
   ]

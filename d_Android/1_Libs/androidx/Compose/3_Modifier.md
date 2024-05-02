@@ -41,7 +41,7 @@ modifier = Modifier                  // ВАЖНО соблюдать очере
 			.size(64.dp)
 			.verticalScroll(rememberScrollState()) // прокрутка
 			.weight(2f)              // ТОЛЬКО для Row/Column - аналог weight у LinearLayout
-
+			
 			// прокидываем modifierв свой кастомный компонент
 @Composable
 fun MyComponent(

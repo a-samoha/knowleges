@@ -1,13 +1,17 @@
 
 ### Теория
-**Composition** - дерево компонентов созданное @Composable fun
-	- `@Composable fun != Composition`
-	-  `@Composable fun serve the Composition`
-	- `Рекомпозиция перерисовывает только елементы, в которых произошли изменения uiState.`
-		 - `Это происходит потому, что Composition рекурсивная структура данных. `
-		 - `Каждый компонент сам является Composition.`
-		 - `У каждого Composition свой Lifecycle (вложенные могут умирать раньше)` 
-	- `remember кеширует данные ровно пока, живет Composition в которой он вызвано`
+**Композиция (Composition)** 
+	- это рекурсивное дерево, каждый елемент которого есть таким же деревом
+	- У каждого Composition свой Lifecycle (вложенные могут умирать раньше)
+	- `Composition != @Composable fun`
+	- создается и обслуживается композабл функциями. *Сами функции выполняются при каждой рекомпозиции, НО*
+	- под капотом проверяется кеш  uiState и перерис. только те, в которых произошли изменения uiState.
+	- remember{} кеширует данные ровно пока, живет Композиция в которой он вызвается
+
+Lifecycle - Жизненный цикл объекта композиции:
+	- Вход (Создание)
+	- Рекомпозиция (посредством композабл функции)
+	- Удаление
 
 ### Lifecycle  (типа: onCreate, onUpdate,onDestroy)
 ![[Pasted image 20231220190406.png]]
@@ -63,42 +67,40 @@ val transformedValue by remember{
 
 ![[Pasted image 20231221180044.png]]
 
-
-#### Drawing Phase - (отрисовка)
+#### 3. Drawing Phase - (отрисовка)
 - **Рендеринг**: 
 	Когда все размеры и позиции определены, 
 	Compose отрисовывает компоненты на экране.
 	Используется графический движок устройства.
 
 **ВАЖНО!** (из GPT4)
-**Макетирование и отрисовка следуют за рекомпозицией и связаны с ней (как ее последствия), но являются отдельными этапами в процессе рендеринга.**
+**Макетирование и отрисовка следуют за рекомпозицией и связаны с ней (как ее последствия), 
+но являются отдельными этапами в процессе рендеринга.**
 
 `.drawBehind{}            // выполняется на DrawingPhase фазе `
 
 
-
-
-### Log composable livecycle
+### Логирование Lifecycle
 ```kotlin
 private const val TAG = "CompositionLifecycle"  
   
 @Composable  
 fun logCompositionLifecycle(name: String): Any = remember {  
-	LifecycleRememberObserver(name)  
+    LifecycleRememberObserver(name)  
 }  
   
 private class LifecycleRememberObserver(  
-	private val name: String,  
-) : RememberObserver {  
-	override fun onAbandoned() = Unit  
-  
-	override fun onForgotten() {  
-		Log.d(TAG, "$name.onLeave")  
-	}  
-  
-	override fun onRemembered() {  
-		Log.d(TAG, "$name.onEnter")  
-	}  
+    private val name: String  
+): RememberObserver {  
+      
+    override fun onAbandoned() {  
+        Log.d(TAG, "$name.onEnter")  
+    }  
+	  
+    override fun onForgotten() {  
+        Log.d(TAG, "$name.onLeave")  
+    }  
+	  
+    override fun onRemembered() = Unit  
 }
 ```
-

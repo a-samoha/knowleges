@@ -23,32 +23,44 @@ Oснованы на одних и тех же принципах:
 
 ![[composition.png]]
 
-Lifecycle - Жизненный цикл объекта композиции:
-	- Вход (Создание)
-	- Рекомпозиция (посредством композабл функции)
-	- Удаление
 
-Логирование Lifecycle
+### ComposeView  :  AbstractComposeView   :  ViewGroup(context, attrs, defStyleAttr)
 ```kotlin
-private const val TAG = "CompositionLifecycle"  
-  
+import androidx.activity.compose.setContent
+
+class MainActivity : ComponentActivity() {  
+	override fun onCreate(savedInstanceState: Bundle?) {  
+		super.onCreate(savedInstanceState)  
+		setContent {}  // запускает отрисовку ComposeView 
+	}
+}
+```
+
+### Preview
+```kotlin
 @Composable  
-fun logCompositionLifecycle(name: String): Any = remember {  
-    LifecycleRememberObserver(name)  
-}  
-  
-private class LifecycleRememberObserver(  
-    private val name: String  
-): RememberObserver {  
-      
-    override fun onAbandoned() {  
-        Log.d(TAG, "$name.onEnter")  
-    }  
-  
-    override fun onForgotten() {  
-        Log.d(TAG, "$name.onLeave")  
-    }  
-  
-    override fun onRemembered() = Unit  
+@Preview(
+	showSystemUi = true,   
+	widthDp = 100,                    // можно указывать вместе с showSystemUi
+	heightDp = 600          
+	showBackground = true,
+	)
+private fun PreviewScreenContent() {  // any fun name
+	ScreenContent(                    // name of real compose fun
+		uiState = MyState(),               
+	)  
+}
+```
+
+### Get Context
+```kotlin
+@Composable
+fun showToast(){
+	val context: Context = LocalContext.current
+	Toast.makeText(
+		context,
+		"Hello world",
+		Toast.LENGTH_SHORT
+	).show()
 }
 ```
