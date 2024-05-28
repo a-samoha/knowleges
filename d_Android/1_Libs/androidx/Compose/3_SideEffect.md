@@ -42,7 +42,7 @@ fun KataScreen(){
 	
 	// теперь код будет выполняться только если Text будет зависить от state!!!
 	SideEffect {  // код выполняется ПОСЛЕ рекомпозиции!!!
-		printLn("AAA - counter $state)
+		printLn("AAA - counter $state")
 	}
 	
 	Text(
