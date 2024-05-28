@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/0_Overview.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c663dcd0886d30f7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/4_ConstraintLayout.md",
+                "file": "d_Android/1_Libs/androidx/Compose/3_SideEffect.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 297.5
+    "width": 267.5
   },
   "right": {
     "id": "7dff784af80a6780",
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "d_Android/1_Libs/androidx/Compose/4_ConstraintLayout.md",
+                "file": "d_Android/1_Libs/androidx/Compose/3_SideEffect.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,45 +124,47 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "c663dcd0886d30f7",
+  "active": "ab4a79579e148792",
   "lastOpenFiles": [
-    "d_Android/1_Libs/androidx/Compose/5_Компоненты.md",
+    "d_Android/1_Libs/androidx/Compose/4_CompositionLocal.md",
+    "d_Android/1_Libs/androidx/Compose/4_ConstraintLayout.md",
     "d_Android/1_Libs/androidx/Compose/4_Компоновщики.md",
-    "d_Android/1_Libs/androidx/Compose/0_Overview.md",
-    "d_Android/1_Libs/androidx/Compose/3_Modifier.md",
-    "d_Android/1_Libs/androidx/Compose/2_State.md",
+    "d_Android/1_Libs/androidx/Compose/Material Design 3.md",
+    "d_Android/1_Libs/androidx/Compose/5_Компоненты.md",
+    "d_Android/0_SDK/DVM vs ART.md",
+    "d_Android/1_Libs/androidx/Navigation/nav_graph.md",
+    "d_Android/1_Libs/androidx/Fragment/Fragment.md",
     "d_Android/1_Libs/androidx/Compose/1_Lifecycle.md",
+    "d_Android/1_Libs/androidx/Compose/3_SideEffect.md",
+    "d_Android/1_Libs/androidx/Compose/3_Modifier.md",
+    "c_Kotlin/Coroutines/Flow/Flow_Operators.md",
+    "c_Kotlin/Coroutines/Flow/2_SharedFlow.md",
+    "c_Kotlin/Coroutines/Flow/3_StateFlow.md",
+    "c_Kotlin/Coroutines/Flow/1_FLow.md",
+    "d_Android/1_Libs/androidx/Compose/State/State.md",
+    "d_Android/1_Libs/androidx/Compose/State/derivedStateOf.md",
+    "d_Android/res/drawable-hdpi/image.png.md",
+    "d_Android/res/drawable/ic_louncher.xml.md",
+    "zz_assets/Pasted image 20240503150029.png",
+    "Pasted image 20240503144829.png",
+    "d_Android/res/drawable",
+    "d_Android/0_SDK/0_android.jar.md",
+    "d_Android/res/drawable-hdpi",
+    "d_Android/res",
+    "d_Android/1_Libs/androidx/Compose/State",
+    "d_Android/1_Libs/androidx/Compose/0_Overview.md",
     "d_Android/1_Libs/androidx/Compose/1_State.md",
     "zz_assets/composition.png",
-    "d_Android/1_Libs/androidx/Compose/4_CompositionLocal.md",
     "d_Android/0_SDK/View & XML/Bundle/Parcelize.md",
-    "d_Android/1_Libs/androidx/Compose/3_SideEffect.md",
     "d_Android/1_Libs/androidx/Compose/2_CompositionLocal.md",
-    "d_Android/1_Libs/androidx/Navigation/nav_graph.md",
     "d_Android/1_Libs/Navigation/Manual.md",
     "README.md",
-    "d_Android/0_SDK/View & XML/View/ImageView.md",
-    "d_Android/Modules(Gradle)/Multi modules (groovy).md",
-    "d_Android/Modules(Gradle)/build.gradle.kts (kotlin).md",
-    "d_Android/Modules(Gradle)/build.gradle (groovy).md",
-    "d_Android/Modules(Gradle)/Dependencies.md",
-    "d_Android/Modules(Gradle)/CICD.md",
-    "d_Android/Modules(Gradle)/aGradle.md",
-    "d_Android/0_SDK/View & XML/c_xml/DataBinding.md",
-    "d_Android/0_SDK/View & XML/View/EditTextView.md",
-    "d_Android/1_Libs/androidx/ViewModel/Create.md",
-    "Koin.md",
-    "Hilt.md",
     "d_Android/0_SDK/View & XML/Bundle",
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs/androidx",
     "d_Android/1_Libs/androidx/Navigation",
     "d_Android/1_Libs",
     "d_Android/-1_NDK",
-    "d_Android/0_SDK",
-    "d_Android/0_SDK/View & XML",
-    "d_Android/1_Libs/Data storage/Remote",
-    "d_Android/1_Libs/Data storage/Local/Files",
     "zz_assets/Pasted image 20240409223600.png",
     "zz_assets/Pasted image 20240312213103.png",
     "QA/Pasted image 20240220212427.png",
@@ -184,8 +173,6 @@
     "zz_assets/mvi_cyclic.png",
     "Pasted image 20240220212422.png",
     "zz_assets/Pasted image 20240220210300.png",
-    "Pasted image 20240220212346.png",
-    "zz_assets/Pasted image 20240220153832.png",
     "d_Android/Untitled.canvas",
     "Untitled 1.canvas"
   ]
