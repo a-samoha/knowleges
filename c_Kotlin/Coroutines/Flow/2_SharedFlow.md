@@ -20,7 +20,6 @@
 		}
 ```
 
-
 ```kotlin
 class SupportSaleViewModel() : ViewModel() {
 

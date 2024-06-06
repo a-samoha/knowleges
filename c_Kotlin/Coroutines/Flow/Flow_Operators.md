@@ -28,7 +28,7 @@
 					это значит - НЕ прокинет первый эмит дальше, а, займется следующим эмитом
 					println("Collecting $value") 
 					delay(200) // Emulate work (обработка первого эмита продолжается)
-				    println("$value collected")  // этот уод может не выполниться, если следующий эмит прилетит раньше
+				    println("$value collected")  // этот код может не выполниться, если следующий эмит прилетит раньше
 	}
 
 	- myFlow.single() // Throws [NoSuchElementException] for empty flow and [IllegalArgumentException] for flow that contains more than one element.
@@ -80,7 +80,7 @@
 					это объединение (аналог) `.map(transform).flattenConcat()`
 					каждый эмит из flow1 передается во flow2
 					flow2 БЛОКИРУЕТ следующий эмит из flow1 пока не выполнит свой код
-					на каждый эмит из flow1 второй поток может делать много своих эмитов
+					на каджий эмит из flow1 второй поток может делать много своих эмитов
 					второй поток может преобразовывать тип объекта (получить Int а вернуть String)
 					по-сути, возвращает эмиты второго потока
 	- flow1.flatMapLatest{ flow2(it) } 
