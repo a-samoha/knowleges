@@ -4,23 +4,9 @@
 - ListView
 - Spinner
 
-### Payload
-Payload в контексте Kotlin для разработки Android упоминается в связи с  RecyclerView. 
-Payload используется для описания изменений, которые должны быть применены к элементу списка.
-
-Когда данные, отображаемые в RecyclerView, изменяются, адаптер может уведомить об этих изменениях с использованием методов `.notifyItemChanged(position)`, `.notifyDataSetChanged()` и других. В этих методах можно передать payload - объект, который содержит информацию о том, что именно изменилось в элементе данных. Это может быть полезно для оптимизации производительности, поскольку позволяет обновлять только те части представления элемента списка, которые действительно изменились, а не перерисовывать весь элемент целиком.
-
-Например, если у вас есть список, в котором отображается имя и фотография пользователя, и изменяется только имя, то с помощью payload можно обновить только текстовое представление с именем, не затрагивая изображение.
-
-В методе адаптера `onBindViewHolder`, который отвечает за связывание данных с представлениями элементов списка, можно проверить, передан ли payload. Если payload передан, можно выполнить только те обновления, которые он описывает. 
-
-
 ## RecyclerView
-- в xml  -  <androidx.recyclerview.widget.`RecyclerView`/>
-- Отдельный файл с разметкой элемента списка `item_type_one.xm` 
-- `TwoItemTypesUiModel``
-- `TwoItemTypesListAdapter`
-- Активация во фрагменте.
+### SingleItemTypeListAdapter
+### MultipleItemTypesListAdapter [(with Title Separator)](https://stackoverflow.com/a/65593579)
 
 ##### fragment_settings.xml
 ```xml
@@ -35,8 +21,19 @@ Payload используется для описания изменений, к�
 	    tools:itemCount="4"  
 	    tools:listitem="@layout/item_some" />
 ```
-#####  item_type_one.xml
+
+##### item_title_separator.xml
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titleSeparator"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+```
+
+#####  item_type.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"  
     xmlns:app="http://schemas.android.com/apk/res-auto"  
     xmlns:tools="http://schemas.android.com/tools"  
@@ -57,7 +54,20 @@ Payload используется для описания изменений, к�
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 ```
-##### item_type_two.xml - создаем по аналогии
+
+##### TwoItemTypesUiModel
+```kotlin
+data class SomeItemUiModel(
+	private val id: Int,
+	private val text: String,
+)
+
+sealed class TwoItemTypesUiModel(val id: String) {  
+    data class TypeOne(val text: String) : TwoItemTypesUiModel("${text.hashCode()}")  
+    data class TypeTwo(val some: SomeItemUiModel) : TwoItemTypesUiModel(some.id)  
+}
+```
+
 ##### TwoItemTypesListAdapter
 ```kotlin
 class TwoItemTypesListAdapter(  
@@ -65,10 +75,11 @@ class TwoItemTypesListAdapter(
 ) : ListAdapter<TwoItemTypesUiModel, TwoItemTypesListAdapter.ViewHolder>(DIFF) {
 	
 	// описывает тип елемента списка, на который кликнули
-	override fun getItemViewType(position: Int): Int = when(getItem(position)){
-		is TwoItemTypesUiModel.TypeOne -> VIEW_TYPE_ONE
-		is TwoItemTypesUiModel.TypeTwo -> VIEW_TYPE_TWO
-	}
+	override fun getItemViewType(position: Int): Int =
+		return when(getItem(position)){
+			is TwoItemTypesUiModel.TypeOne -> VIEW_TYPE_ONE
+			is TwoItemTypesUiModel.TypeTwo -> VIEW_TYPE_TWO
+		}
 	
 	// Выдаем холдер согласно типу елемента. 
 	// (если cписок из 2/3 типов Item, напр: "Дата" и "Звонки")
@@ -130,16 +141,13 @@ class TwoItemTypesListAdapter(
 }
 ```
 
-##### TwoItemTypesUiModel
-```kotlin
-data class SomeItemUiModel(
-	private val id: Int,
-	private val text: String,
-)
+### Payload
+Payload в контексте Kotlin для разработки Android упоминается в связи с  RecyclerView. 
+Payload используется для описания изменений, которые должны быть применены к элементу списка.
 
-sealed class TwoItemTypesUiModel(val id: String) {  
-    data class TypeOne(val text: String) : TwoItemTypesUiModel("${text.hashCode()}")  
-    data class TypeTwo(val some: SomeItemUiModel) : TwoItemTypesUiModel(some.id)  
-}
-```
+Когда данные, отображаемые в RecyclerView, изменяются, адаптер может уведомить об этих изменениях с использованием методов `.notifyItemChanged(position)`, `.notifyDataSetChanged()` и других. В этих методах можно передать payload - объект, который содержит информацию о том, что именно изменилось в элементе данных. Это может быть полезно для оптимизации производительности, поскольку позволяет обновлять только те части представления элемента списка, которые действительно изменились, а не перерисовывать весь элемент целиком.
+
+Например, если у вас есть список, в котором отображается имя и фотография пользователя, и изменяется только имя, то с помощью payload можно обновить только текстовое представление с именем, не затрагивая изображение.
+
+В методе адаптера `onBindViewHolder`, который отвечает за связывание данных с представлениями элементов списка, можно проверить, передан ли payload. Если payload передан, можно выполнить только те обновления, которые он описывает. 
 
