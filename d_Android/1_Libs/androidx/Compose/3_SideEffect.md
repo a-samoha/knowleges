@@ -20,7 +20,7 @@ fun KataScreen(){
 	var state by rememberSaveable { mutableIntStateOf(1) }
 	
 	// подписка здесь будет провоцировать рекомпозицию!!!
-	printLn("AAA - counter $state)
+	printLn("AAA - counter $state")
 	
 	Text(
 		text = "$state" // даже если закоментировать эту строку - 

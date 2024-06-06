@@ -10,7 +10,7 @@
 	- ComposeView
 		  - наследуется от ViewGroup
 		  - внутри метода setContent {}  создается ComposeView и 
-		  - сетитtentVieся в старый setConw (this, DefaultActivityContentLayoutParams)
+		  - сетится в старый setContentView (this, DefaultActivityContentLayoutParams)
 - **ВАЖНО** соблюдать правильную очередность вызовов функций
 	 ![[Pasted image 20231219174853.png]]
   
@@ -41,8 +41,10 @@ modifier = Modifier                  // ВАЖНО соблюдать очере
 			.size(64.dp)
 			.verticalScroll(rememberScrollState()) // прокрутка
 			.weight(2f)              // ТОЛЬКО для Row/Column - аналог weight у LinearLayout
+			.fillMaxWidth()          // если соблюсти такую последовательность ->  
+			.wrapContentWidth(),     // -> текст выровняется по центру скрина и займет минимум места.
 			
-			// прокидываем modifierв свой кастомный компонент
+			// прокидываем modifier в свой кастомный компонент
 @Composable
 fun MyComponent(
 	modifier: Modifier = Modifier,
