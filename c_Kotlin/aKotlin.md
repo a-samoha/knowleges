@@ -4,7 +4,7 @@
 
 [[Collections]]
 
-[[1_Overview]]
+[[c_Kotlin/Coroutines/suspend/1_Overview]]
 
 [[Lambdas]]
 
