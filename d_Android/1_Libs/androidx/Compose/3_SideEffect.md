@@ -64,7 +64,6 @@ fun KataScreen(){
 fun KataScreen(){
 	var state by rememberSaveable { mutableIntStateOf(1) }
 	
-	if(state )
 	// передаем в ключ константу
 	LaunchedEffect(0) {  // выполнится 1 раз!!!
 		printLn("AAA - counter $state)
