@@ -1,6 +1,8 @@
 
 [YouTube курс по Compose](https://youtu.be/z24DOCcqzaU?si=83M4xkSnDKO73rOy)
 
+[Dependencies](https://developer.android.com/jetpack/androidx/releases/compose-ui#declaring_dependencies)
+
 - Jetpack Compose, 
 - Flatter, 
 - React Native, React Redax
