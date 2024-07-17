@@ -2,6 +2,8 @@
 
 #B3FFFFFF - B3 означает 30% цвета (70% прозрачности)
 
+[Compose animation](https://developer.android.com/develop/ui/views/animations)
+
 ### Set **XY position** animation of top_left corner
 ```kotlin
 view.apply{
@@ -12,6 +14,19 @@ view.apply{
 		.y(0f)  
 		.setDuration(500)  
 		.start()
+}
+
+... 
+
+fun showBottomNavBar(isVisible: Boolean) {  
+    val screenHeight = context.resources.displayMetrics.heightPixels.toFloat()
+    val bottomNavBarY = (screenHeight - binding.bottomNavigationHolder.height)  // положение верхнего левого угла по оси У (вертикально)
+    binding.bottomNavBar.apply {  
+        animate()  
+            .y(if (isVisible) bottomNavBarY else screenHeight)  // положение в которое придет левый верхний угол в конце линейной анимации
+            .setDuration(500)  // продолжительность анимации
+            .start()  
+    }  
 }
 ```
 ### Set **onTouchListener** - will move the view with Your finger
@@ -68,6 +83,87 @@ view.setOnTouchListener(View.OnTouchListener { view, event ->
 	    addUpdateListener { binding.topAppBar.alpha = it.getAnimatedValue("alpha_holder") as Float }  
 	    delay(280L) { start() }  
 	}
+}
+```
+
+### [Анимация фрагмента ВАР 1 (папка res/anim)](https://developer.android.com/guide/fragments/animate) 
+res/anim/fade_out.xml
+```kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"    
+	   android:duration="@android:integer/config_shortAnimTime"    
+	   android:interpolator="@android:anim/decelerate_interpolator"    
+	   android:fromAlpha="1"    
+	   android:toAlpha="0" />
+```
+res/anim/slide_in.xml
+```kotlin
+
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+	android:duration="@android:integer/config_shortAnimTime"
+	android:interpolator="@android:anim/decelerate_interpolator"
+	android:fromXDelta="100%"
+	android:toXDelta="0%" />
+```
+res/anim/slide_out.xml
+```kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+	android:duration="@android:integer/config_shortAnimTime"
+	android:interpolator="@android:anim/decelerate_interpolator"
+	android:fromXDelta="0%"
+	android:toXDelta="100%" />
+```
+res/anim/fade_in.xml
+```kotlin
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+android:duration="@android:integer/config_shortAnimTime" 
+android:interpolator="@android:anim/decelerate_interpolator" 
+android:fromAlpha="0"  
+android:toAlpha="1" />
+```
+MainActivity.kt
+```kotlin
+supportFragmentManager.commit {    
+	setCustomAnimations(       
+		R.anim.slide_in, // enter  
+		R.anim.fade_out, // exit     
+		R.anim.fade_in, // popEnter    
+		R.anim.slide_out // popExit    )  
+	replace(R.id.fragment_container, fragment)  
+	addToBackStack(null)  
+}
+```
+
+### Анимация фрагмента ВАР 2 (папка res/transition)
+res/transition/fade.xml
+```
+<fade xmlns:android="http://schemas.android.com/apk/res/android"  
+	android:duration="@android:integer/config_shortAnimTime"/>
+```
+res/transition/slide_right.xml
+```kotlin
+<slide xmlns:android="http://schemas.android.com/apk/res/android"  
+	android:duration="@android:integer/config_shortAnimTime"  
+	android:slideEdge="right" />
+```
+
+```kotlin
+class FragmentA : Fragment() { 
+	override fun onCreate(savedInstanceState: Bundle?) {     
+		super.onCreate(savedInstanceState)        
+		val inflater = TransitionInflater.from(requireContext())     
+		exitTransition = inflater.inflateTransition(R.transition.fade) 
+	}  
+}  
+  
+class FragmentB : Fragment() { 
+	override fun onCreate(savedInstanceState: Bundle?) {  
+		super.onCreate(savedInstanceState)      
+		val inflater = TransitionInflater.from(requireContext())        
+		enterTransition = inflater.inflateTransition(R.transition.slide_right)
+	}  
 }
 ```
 
