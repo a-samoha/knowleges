@@ -2,8 +2,10 @@
 - [Udacity](https://learn.udacity.com/my-programs?tab=Currently%2520Learning)
 - [TutorialKart](https://www.tutorialkart.com)
 - [JavaRush](https://javarush.com/quests)
+- [Java Collections Framework](https://developer.android.com//reference/java/util/package-summary.html#exceptions)
 
-- https://roadmap.sh/  -  сайт з картами необхідних знань.
+- https://roadmap.sh/                     -  карты необходимых знаний.
+- https://hotkeycheatsheet.com/   - горячие клавиши
 
 Образ мышления:
 

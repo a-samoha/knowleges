@@ -31,6 +31,13 @@ public interface CoroutineScope {
 	- При уничтожении ViewModel все корутины, созданные в этом scope удаляются.
 - можно создать **CustomScope**
 
+# Dispatchers
+
+	.Main  -  главный поток (используется по умолчанию)
+	.IO  -  используется для походов в сеть или БД
+	.Default  -  используется для сложных мат. вычислений (оптемизирован для этого)
+	.Unconfined - выполняется в текущем потоке, но не ограничен им
+
 # Cоздание корутины (Coroutine builders)
 ```kotlin
 (Dispatchers.Default)
@@ -179,14 +186,6 @@ suspend fun sf3(): String{
 ```
 
 
-# Dispatchers
-
-	.Default  -  используется для сложных мат. вычислений (оптемизирован для этого)
-	.Main  -  главный поток (используется по умолчанию)
-	.Unconfined
-	.IO  -  используется для походов в сеть или БД
-
-
 # Continuation
 
 Roman Andrushchenko   e.g.:
@@ -231,17 +230,6 @@ class FirebaseTokenRepositoryImpl(
     }.flowOn(coroutineDispatchers.io)  
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 
 ![[последовательность в корутинах.png]]
