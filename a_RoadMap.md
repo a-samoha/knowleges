@@ -6,6 +6,13 @@
 
 - https://roadmap.sh/                     -  карты необходимых знаний.
 - https://hotkeycheatsheet.com/   - горячие клавиши
+- https://llamacoder.together.ai/    - 
+
+- https://www.freefileconvert.com/  - конвертирование файлов бесплатно
+- 
+- https://icons8.com
+- https://www.svgrepo.com/
+- https://lineicons.com/free-icons
 
 Образ мышления:
 

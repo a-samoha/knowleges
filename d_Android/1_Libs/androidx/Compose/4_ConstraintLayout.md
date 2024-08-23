@@ -1,8 +1,22 @@
 ### Dependencies
+#### official JetBrains (no Multiplatform usage)
 build.gradle
 ```kotlin
-implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1") // official JetBrains
 ```
+
+#### [custom Github (For Multiplatform)](https://github.com/Lavmee/constraintlayout-compose-multiplatform)
+build.gradle
+```kotlin
+val commonMain by getting {
+    dependencies {
+        implementation("tech.annexflow.compose:constraintlayout-compose-multiplatform:0.4.0")
+        /// Compose 1.7.0-alpha01
+        implementation("tech.annexflow.compose:constraintlayout-compose-multiplatform:0.5.0-alpha01")
+    }
+}
+```
+
 
 ### Variant_1  -  constraints в текущем методе (в лоб)
 KataScreen.kt

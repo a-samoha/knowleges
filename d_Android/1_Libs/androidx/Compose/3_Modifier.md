@@ -43,6 +43,9 @@ modifier = Modifier                  // ВАЖНО соблюдать очере
 			.weight(2f)              // ТОЛЬКО для Row/Column - аналог weight у LinearLayout
 			.fillMaxWidth()          // если соблюсти такую последовательность ->  
 			.wrapContentWidth(),     // -> текст выровняется по центру скрина и займет минимум места.
+			.onGloballyPositioned { coordinates ->  
+			    println("test width ${coordinates.size.width}")  // вывести в логи ширину елемента
+			}
 			
 			// прокидываем modifier в свой кастомный компонент
 @Composable
