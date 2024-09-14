@@ -15,6 +15,12 @@ Graphics: X11
   ![[Pasted image 20230805093053.png]]
 - создаём загрузочную флешку. (https://etcher.balena.io/)
 - загружаемся с флешки, подключаемся к wifi, ставим ОС
+- после установки :
+  - $ **sudo apt update**
+  - $ **sudo apt dist-apgrade**
+  - меняем Global Theme: - Apple Venture Dark P6 + Edna (тут берем Colors & Window Decoration)
+  - ставим Widow Rules:
+  ![[Plasma_win_rules.png]]
 
 [HotKeys]()
 - Ctrl + H  -  показать скрытые папки и файлы (напр.:   .gradle)
