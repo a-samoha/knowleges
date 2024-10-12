@@ -8,6 +8,10 @@
 [Developer Android guide](https://developer.android.com/kotlin/coroutines)
 [Rx to Flow](https://habr.com/ru/companies/simbirsoft/articles/534706/)
 
+Buffer  -  Хранит эмит отправленный подписчику, пока он не будет доставлен [(03:00)](https://youtu.be/njchj9d_Lf8?t=173)  [(06:30)](https://youtu.be/njchj9d_Lf8?t=392)
+
+Cache   -  Хранит эмиты для следующих подписчиков (задается в replay = 3)	
+
 ###### Иерархия:
 `Flow`
 `SharedFlow<out T> : Flow<T>`
@@ -32,7 +36,7 @@ Flow — это, реактивный поток данных.
 	- **всегда используй .firstOrNull()**
 
 1) .emit(myValue)  -  требует suspend
-2) .tryEmit(myValue)  -  **НЕЕЕЕ требует suspend**!!!
+2) .tryEmit(myValue)  -  **НE требует suspend**!!!
 
 3) .observeOn() у RX переключает поток, в котором будут выполняться последующие операторы, 
    [.flowOn()](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html) у Flow определяет диспетчер выполнения для предыдущих операторов.  

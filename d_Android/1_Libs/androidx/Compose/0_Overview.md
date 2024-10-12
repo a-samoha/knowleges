@@ -3,28 +3,29 @@
 
 [Dependencies](https://developer.android.com/jetpack/androidx/releases/compose-ui#declaring_dependencies)
 
+Пришел на смену для "солянки":
+
+| component | lifecycle          | work with        |
+| --------- | ------------------ | ---------------- |
+| Fragment  | fragment lifecycle | fragment manager |
+| Activity  | actyvity lifecycle | intent           |
+| views     | view lifecycle     | View & ViewGroup |
+
+## Принципы Compose
 - Jetpack Compose, 
 - Flatter, 
 - React Native, React Redax
 - MVI, 
 - RecyclerView + ListAdapter + DiffUtil
 
-Oснованы на одних и тех же принципах:
-- Reactive Programming
-- UI depends on State (розделение ui (логики отображения) от state (логики хранения данных))
-- immutability (ТОЛЬКО val и .copy(). Для var можно сделать делегат, гетеры&сеттеры, или реактивно, НО работать не будет.)
-- Pure Functions (для ui рекомпозиции)
+**Oснованы на одних и тех же принципах:**
+1) Reactive Programming
+2) UI depends on State (розделение ui (логики отображения) от state (логики хранения данных))
+3) immutability (ТОЛЬКО val и .copy(). Для var можно сделать делегат, гетеры&сеттеры, или реактивно, НО работать не будет.)
+4) Pure Functions (для ui рекомпозиции)
 	- Stable and predictable results
 	- Easy to optimize
 	- Eazy to cover with tests
-
-## Композиция (Composition)
-	- Композиция ОТЛИЧАЕТСЯ от композабл функций
-	- Композиция это объект который создается и обслуживается композабл функциями
-	- Композиция это рекурсивное дерево, каждый елемент которого есть таким же деревом:
-
-![[composition.png]]
-
 
 ### ComposeView  :  AbstractComposeView   :  ViewGroup(context, attrs, defStyleAttr)
 ```kotlin

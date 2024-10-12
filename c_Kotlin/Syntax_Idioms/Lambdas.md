@@ -65,7 +65,7 @@ fun main() {
     }
 }
 
-fun lyambdaPrint(  myBlock: suspend (text:String) -> Unit){
+fun lyambdaPrint( myBlock: suspend (text:String) -> Unit ){
     runBlocking{ myBlock("Any text") } 
 }
 ```

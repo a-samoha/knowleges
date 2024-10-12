@@ -30,7 +30,8 @@ Graphics: X11
 - Discover  ->  flatpak "Obsidian"
 
 [Telegram Linux](https://linux.how2shout.com/how-to-install-telegram-on-linux-desktop-in-2023/)
-- **flatpak install [flathub](https://flathub.org/apps/org.telegram.desktop) org.telegram.desktop**
+- лучше Discover -> flatpak
+- или $**flatpak install [flathub](https://flathub.org/apps/org.telegram.desktop) org.telegram.desktop**
 
 [Android Studio](https://developer.android.com/studio/install)
 - лучше Discover -> flatpak

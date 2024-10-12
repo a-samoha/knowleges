@@ -1,24 +1,35 @@
 
 ### Modifier  -  декорирование, клики, прокрутка...
-- Декорирует компоненты
+
+-  Это интрфейс, на который навешивают extension функции. (Можно создавать свои extension)
 - Отвечает за "ОБЩИЕ" параметры (напр.: .background(color= Color.Green))
 	- тогда как у компонентов идут специализированные параметры (напр.: TEXT(text = "")) 
-- Это интрфейс, на который навешивают extension функции.
-- Можно создавать свои extension для модификатора
-- Oн обрабатывается:
-	- Компоновщиком (как :layout_ атрибуты в xml, напр.: layout_width)         или
-	- ComposeView
+	
+- Oбрабатываются:
+
+	- Компоновщиком (как :**layout_ атрибуты** в xml, напр.: layout_width)         
+	или
+	- самим ComposeView которое:
 		  - наследуется от ViewGroup
-		  - внутри метода setContent {}  создается ComposeView и 
+		  - ComposeView создается при вызове метода setContent {}   и 
 		  - сетится в старый setContentView (this, DefaultActivityContentLayoutParams)
+	
 - **ВАЖНО** соблюдать правильную очередность вызовов функций
 	 ![[Pasted image 20231219174853.png]]
-  
+
+```kotlin 
+if(AndroidColor.luminance(btnColor) > 0.5){
+	// USE AndroidColor.BLACK
+} else {
+	// USE AndroidColor.WHITE
+}
+```
+
 ```kotlin
 modifier = Modifier                  // ВАЖНО соблюдать очередность
 			.align(BiasAlignment.Horizontal(0.2f))  // смещение как в ConstraintLayout
 			.background(
-				color= Color.Green,  // цвет фона
+				color= Color.Green,  // цвет фона, 
 				shape=CircleShape, // форма фона
 			)
 			.clip(CircleShape)       // обрезка типа crop 
