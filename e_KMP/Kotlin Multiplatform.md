@@ -3,3 +3,5 @@
 
 [Running Xcode (a software development tool created by Apple) on Linux](https://www.baeldung.com/linux/xcode#running-xcode-on-linux)
 
+
+![[kmp_compilation.png]]

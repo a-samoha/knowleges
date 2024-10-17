@@ -1,4 +1,6 @@
 
+# HTML (HyperText Markup Language, мова розмітки гіпертексту)
+
 **VSCode** - основний редактор
 **Плагіни** для VSCode: 
 - "prettier", 
