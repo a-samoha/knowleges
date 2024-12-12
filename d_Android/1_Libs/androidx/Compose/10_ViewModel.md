@@ -11,7 +11,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
 }
 
 import org.koin.androidx.compose.koinViewModel
-fun CustomScreen(userName: String, viewModel: CustomViewModel = koinViewModel()){
+fun CustomScreen(userName: String, viewModel: UserViewModel = koinViewModel()){
 	Text(text = viewModel.sayHello(userName))
 }
 ```

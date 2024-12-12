@@ -1,6 +1,17 @@
 #architecture 
 [источник](https://staltz.com/unidirectional-user-interface-architectures.html)
 
+от  Lackner:  
+- в MVI все данные для скрина лежат в ОДНОМ data class, напр.:
+	```kotlin
+	data class HomeState(
+		val isLoading: Boolean = false,
+		val userName: Strin = "",
+		val date: Date? = null,
+	)
+	```
+	- в той час як у MVVM усі поля передаються в срін окремими flow
+
 # UDF - Unidirectional data flow 
 	(принцип управления пользовательским интерфейсом.)
 

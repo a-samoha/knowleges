@@ -6,6 +6,117 @@
 
 ## RecyclerView
 ### SingleItemTypeListAdapter
+
+Это древний вариант
+- Он работает, НО перерисовывает все елементы при каждом изменении списка данных ("values")
+```kotlin
+import android.view.LayoutInflater  
+import android.view.View  
+import android.view.ViewGroup  
+import android.widget.TextView  
+import androidx.recyclerview.widget.RecyclerView  
+import com.b9.app.core.ui_kit.utils.gone  
+import com.b9.app.feature.loan.impl.presentation.adapter.DetailsValuesAdapter.DetailsValuesViewHolder  
+import com.b9.app.features.loan.impl.R  
+  
+class DetailsValuesAdapter(  
+    private val values: List<Pair<String, String>>,  
+) : RecyclerView.Adapter<DetailsValuesViewHolder>() {  
+  
+    class DetailsValuesViewHolder(view: View) : RecyclerView.ViewHolder(view) {  
+        val title: TextView = view.findViewById(R.id.title)  
+        val value: TextView = view.findViewById(R.id.value)  
+        val divider: View = view.findViewById(R.id.divider)  
+    }  
+  
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DetailsValuesViewHolder(  
+        LayoutInflater.from(parent.context).inflate(  
+            R.layout.loan_details_values_item, parent, false  
+        )  
+    )  
+  
+    override fun onBindViewHolder(holder: DetailsValuesViewHolder, position: Int) {  
+        println("test onBindViewHolder $holder")  
+        holder.title.text = values[position].first  
+        holder.value.text = values[position].second  
+        if (position == itemCount - 1) holder.divider.gone()  
+    }  
+  
+    override fun getItemCount() = values.size  
+}
+```
+
+Это более современный вариант с DiffUtil
+- Не перерисовывает елементы которые при обновлении даных НЕ изменились.
+```kotlin
+
+class DetailsValuesAdapter :  
+    ListAdapter<Pair<String, String>, DetailsValuesViewHolder>(DetailsValuesDiffCallback()) {  
+  
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsValuesViewHolder {  
+        val binding =  
+            LoanDetailsValuesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)  
+        return DetailsValuesViewHolder(binding = binding)  
+    }  
+  
+    override fun onBindViewHolder(holder: DetailsValuesViewHolder, position: Int) {  
+        holder.bind(getItem(position), position == itemCount - 1)  
+    }  
+  
+    class DetailsValuesViewHolder(  
+        private val binding: LoanDetailsValuesItemBinding,  
+    ) : RecyclerView.ViewHolder(binding.root) {  
+  
+        fun bind(item: Pair<String, String>, hideDivider: Boolean) = with(binding) {  
+            title.text = item.first  
+            value.text = item.second  
+            if (hideDivider) divider.gone()  
+        }  
+    }  
+  
+    class DetailsValuesDiffCallback : DiffUtil.ItemCallback<Pair<String, String>>() {  
+  
+        override fun areItemsTheSame(  
+            oldItem: Pair<String, String>,  
+            newItem: Pair<String, String>  
+        ): Boolean {  
+            return oldItem.first == newItem.first  
+        }  
+  
+        override fun areContentsTheSame(  
+            oldItem: Pair<String, String>,  
+            newItem: Pair<String, String>  
+        ): Boolean {  
+            return oldItem == newItem  
+        }  
+    }  
+}
+```
+
+##### LoanDetailsScreen.kt
+```kotlin
+class LoanDetailsScreen : BaseFragment<LoanDetailsFragmentBinding>() {  
+  
+    private val viewModel by viewModel<LoanDetailsViewModel> { parametersOf(arguments) }  
+  
+    private val valuesAdapter = DetailsValuesAdapter()
+	
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
+	    super.onViewCreated(view, savedInstanceState)
+	    
+	    val layoutManagerDetails = object : LinearLayoutManager(requireContext()) {
+	        override fun canScrollVertically() = false  
+		}  
+		
+		binding.rvDetailsValues.layoutManager = layoutManagerDetails    
+		binding.rvDetailsValues.adapter = valuesAdapter
+		
+		viewModel.state  
+		    .onEach{ state -> valuesAdapter.submitList(state.values) }  
+		    .launchIn(lifecycleScope)
+	}
+```
+
 ### MultipleItemTypesListAdapter [(with Title Separator)](https://stackoverflow.com/a/65593579)
 
 ##### fragment_settings.xml

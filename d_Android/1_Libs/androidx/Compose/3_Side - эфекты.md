@@ -22,7 +22,7 @@ Pure function  -  при одних и тех же входных данных, 
 ```kotlin
 @Composable
 fun KataScreen(){
-	var state by rememberSaveable { mutableIntStateOf(1) }
+	var state by rememberSaveable { mutableIntStateOf(1) } // state будет менять клик по кнопке
 	
 	// подписка на State здесь будет провоцировать рекомпозицию!!!
 	printLn("AAA - counter $state")

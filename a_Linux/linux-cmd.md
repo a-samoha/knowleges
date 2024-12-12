@@ -62,7 +62,6 @@
 ~$ flatpak —help    утилита-платформа для развёртывания, управления пакетами и виртуализации
                      
 
-
 Из собственного опыта получил очередь использования менеджеров пакетов:
 -  на apt ищем пакет (приложение) в первую очередь. Здесь лежат последние стабильные версии. Это менеджер самой ОС (вроде)
 - на flatpak обычно самые новые версии. Вроде все нормально работает.
@@ -81,10 +80,18 @@
 ~$ sudo apt purge scrcpy     |  uninstalls scrcpy and deletes all the configuration files
 ~$ sudo apt remove scrcpy  |  uninstalls scrcpy but not remove configuration files
 ~$ sudo apt autoremove       | To remove any unused packages
+~$ sudo apt update               |  Update all packages
+~$ sudo apt full-upgrade      |  Upgrade all packages
 
 ~$ sudo apt clean                  |  If you’re short on space, you can use the “clean” 
 											command to remove downloaded archive files
 
+~$ sudo apt-get --fix-broken install          | Identify and Remove Conflicting Packages
 
 ~$ xdg-settings get default-web-browser  -  узнать какой сейчас дефолтный браузер
 ~$ xdg-settings set default-web-browser firefox.desktop -  засетить дефолтный браузер
+
+
+
+~$ sudo apt-get install -y java-11-amazon-corretto-jdk 
+(https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/generic-linux-install.html)
