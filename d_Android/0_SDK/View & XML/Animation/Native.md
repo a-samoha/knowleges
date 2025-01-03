@@ -29,6 +29,13 @@ fun showBottomNavBar(isVisible: Boolean) {
     }  
 }
 ```
+
+### Set **alphaAnimation**
+```kotlin
+	val alphaAnimation = AlphaAnimation(0f, 1f).apply { duration = 500 }  
+	binding.textView.startAnimation(alphaAnimation)
+```
+
 ### Set **onTouchListener** - will move the view with Your finger
 ```kotlin
 ...
@@ -63,6 +70,7 @@ view.setOnTouchListener(View.OnTouchListener { view, event ->
     true  
 })
 ```
+
 ### Set view.alpha **VALUE animation** with ValueAnimator
 ```kotlin
 ... onViewCreated( ... ) {
