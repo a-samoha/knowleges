@@ -4,7 +4,7 @@
 
 -   [[Preferences]] : Store private, primitive data in key-value pairs.
 
--   [[Room]] : Store structured data in a private database using the Room persistence library.
+-   [[d_Android/1_Libs/Data storage/Local/Room]] : Store structured data in a private database using the Room persistence library.
 
 -   File storage
 	- [[File Storage -App-specific]] : 

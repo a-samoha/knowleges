@@ -16,7 +16,7 @@
 
 # Подписаться (Терминальные операторы)
 ###### - Вне корутины
-	- myFlow.lounchIn(Dispatchers.IO)
+	- myFlow.lounchIn(CoDispatchers.IO)
 					возвращает Job
 ###### - Из корутины
 	- myFlow.collect{}

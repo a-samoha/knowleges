@@ -226,7 +226,25 @@ firstNames.zipWith(lastNames) { first, last -> first + " " + last }
 ```
 ### .join() - `НЕ ПОНИМАЮ`
 [Документация](https://reactivex.io/documentation/operators/join.html)
-
+### .combineLatest() 
+Available in: ![[Pasted image 20220704124320.png]] `Flowable`, ![[Pasted image 20220704124320.png]] `Observable`,  ![[Pasted image 20220704124454.png]] `Maybe`,  ![[Pasted image 20220704124454.png]] `Single`, ![[Pasted image 20220704124454.png]] `Completable`
+```kotlin
+val newsRefreshes = Observable.interval(100, TimeUnit.MILLISECONDS)
+val weatherRefreshes = Observable.interval(50, TimeUnit.MILLISECONDS)
+Observable.combineLatest(newsRefreshes, weatherRefreshes) { newsRefreshes, weatherRefreshes -> 
+		"Refreshed news " + newsRefreshTimes + " times and weather " + weatherRefreshTimes }
+	.subscribe(System.out::print) 
+// prints:
+// Refreshed news 0 times and weather 0
+// Refreshed news 0 times and weather 1
+// Refreshed news 0 times and weather 2
+// Refreshed news 1 times and weather 2
+// Refreshed news 1 times and weather 3
+// Refreshed news 1 times and weather 4
+// Refreshed news 2 times and weather 4
+// Refreshed news 2 times and weather 5
+// ...
+```
 ### .merge() - добавит второй поток в конец (после onComplete?) первого
 Available in: ![[Pasted image 20220704124320.png]] `Flowable`, ![[Pasted image 20220704124320.png]] `Observable`,  ![[Pasted image 20220704124320.png]] `Maybe`,  ![[Pasted image 20220704124320.png]] `Single`, ![[Pasted image 20220704124320.png]] `Completable`
 ```kotlin
@@ -273,25 +291,6 @@ Observable.switchOnNext(timeIntervals)
 // outer: 1 - inner: 1
 // outer: 1 - inner: 2
 // outer: 1 - inner: 3
-// ...
-```
-### .combineLatest() 
-Available in: ![[Pasted image 20220704124320.png]] `Flowable`, ![[Pasted image 20220704124320.png]] `Observable`,  ![[Pasted image 20220704124454.png]] `Maybe`,  ![[Pasted image 20220704124454.png]] `Single`, ![[Pasted image 20220704124454.png]] `Completable`
-```kotlin
-val newsRefreshes = Observable.interval(100, TimeUnit.MILLISECONDS)
-val weatherRefreshes = Observable.interval(50, TimeUnit.MILLISECONDS)
-Observable.combineLatest(newsRefreshes, weatherRefreshes) { newsRefreshes, weatherRefreshes -> 
-		"Refreshed news " + newsRefreshTimes + " times and weather " + weatherRefreshTimes }
-	.subscribe(System.out::print) 
-// prints:
-// Refreshed news 0 times and weather 0
-// Refreshed news 0 times and weather 1
-// Refreshed news 0 times and weather 2
-// Refreshed news 1 times and weather 2
-// Refreshed news 1 times and weather 3
-// Refreshed news 1 times and weather 4
-// Refreshed news 2 times and weather 4
-// Refreshed news 2 times and weather 5
 // ...
 ```
 # Утилиты 

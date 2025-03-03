@@ -64,8 +64,8 @@
 
 Из собственного опыта получил очередь использования менеджеров пакетов:
 -  на apt ищем пакет (приложение) в первую очередь. Здесь лежат последние стабильные версии. Это менеджер самой ОС (вроде)
-- на flatpak обычно самые новые версии. Вроде все нормально работает.
-- на snap смотрим в последнюю очередь. Здесь версии могут быть НЕ последние (как в случае с Android Studio) и не стабильные (как в случае с scrcpy)
+- на **flatpak** обычно самые новые версии. Вроде все нормально работает.
+- на *snap* смотрим *в последнюю очередь*. Здесь версии могут быть НЕ последние (как в случае с Android Studio) и не стабильные (как в случае с scrcpy)
 ## Установка пакета
 
 ~$ sudo apt install scrcpy
@@ -82,6 +82,7 @@
 ~$ sudo apt autoremove       | To remove any unused packages
 ~$ sudo apt update               |  Update all packages
 ~$ sudo apt full-upgrade      |  Upgrade all packages
+~$ sudo apt dist-upgrade
 
 ~$ sudo apt clean                  |  If you’re short on space, you can use the “clean” 
 											command to remove downloaded archive files

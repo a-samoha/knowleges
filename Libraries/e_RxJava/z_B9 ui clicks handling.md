@@ -68,9 +68,11 @@ class LoginScreen : BaseFragment<AuthFragmentLoginBinding>(){
 
 ```kotlin
 abstract class BaseLoginViewModel : RxViewModel() {  
-	
-	abstract val error: Observable<Error>  
+
 	abstract val isLoading: Observable<Boolean>
+	abstract val error: Observable<Error>  
+	
+	enum class Error { Unknown }
 	  
 	abstract fun attach(input: Input): Observable<*>
 	

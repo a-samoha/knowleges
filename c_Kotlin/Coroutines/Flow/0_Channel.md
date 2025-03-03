@@ -3,12 +3,12 @@
 - **Концепция** как Java's BlockingQueue с суспензированием вместо блокирования
 
 - **Варианты создания:**
-	  - Channel<String>()  это  Channel(RENDEZVOUS)
-	  - Custom:   Channel(3,  DROP_OLDEST)   *ArrayList buffer
-	  - Channel(CONFLATED)  это  Channel(1,  DROP_OLDEST)
-	  - Channel(BUFFERED)  это  Channel(64,  SUSPEND)
-	  - Channel(BUFFERED, DROP_OLDEST)  это  Channel(1,  DROP_OLDEST)
-	  - Channel(UNLIMITED)  это  Channel(Int.MAX,  SUSPEND)   *LinkedList buffer
+	  - `Channel<String>()`  это  Channel(RENDEZVOUS)
+	  - Custom:   `Channel(3,  DROP_OLDEST)`   *ArrayList buffer
+	  -` Channel(CONFLATED)`  это  Channel(1,  DROP_OLDEST)
+	  - `Channel(BUFFERED)`  это  Channel(64,  SUSPEND)
+	  - `Channel(BUFFERED, DROP_OLDEST)`  это  Channel(1,  DROP_OLDEST)
+	  - `Channel(UNLIMITED)`  это  Channel(Int.MAX,  SUSPEND)   *LinkedList buffer
 
 - **onUndeliveredElement** вызывается (synchronously) в 3 случаях:
 	  - .send() выбрасывает ошибку

@@ -68,7 +68,9 @@ class DetailsValuesAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {  
   
         fun bind(item: Pair<String, String>, hideDivider: Boolean) = with(binding) {  
-            title.text = item.first  
+            val context = itemView.context // тут можно легко получить контекст
+		    
+			title.text = item.first  
             value.text = item.second  
             if (hideDivider) divider.gone()  
         }  

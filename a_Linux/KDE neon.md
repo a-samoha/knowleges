@@ -51,8 +51,16 @@ Graphics: X11
 - лучше Discover -> flatpak
 
 [VScode](https://code.visualstudio.com/docs/setup/linux)
-- скачать file_name.deb
+- скачать file_name.deb (e.g.: `code_1.97.2-1739406807_amd64.deb`)
 - $ **sudo apt install ./file_name.deb**
+- можно дважды кликнуть на .deb файл и Discover предложит установить этот файл. Install ...
+
+[.net Install the SDK](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2410#install-the-sdk)
+	~$  sudo apt update
+	~$  sudo apt-get install -y dotnet-sdk-8.0 
+	[Hello World tutorial](https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/next)
+
+Failed to load /snap/dotnet-sdk/168/shared/Microsoft.NETCore.App/6.0.5/libcoreclr.so, error: /lib/x86_64-linux-gnu/libpthread.so.0: version `GLIBC_PRIVATE' not found (required by /snap/core18/current/lib/x86_64-linux-gnu/librt.so.1)
 
 [OBS-studio](https://obsproject.com/ru)
 - $ **sudo apt install obs-studio**
