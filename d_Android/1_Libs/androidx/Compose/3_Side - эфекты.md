@@ -5,7 +5,7 @@ Pure function  -  при одних и тех же входных данных, 
 	- ВСЕ, что НЕ связано с преобразованием данных в UI - это side - эфекты
 	- напр. лямбда Button ( onClick = {} ) это LaunchedEffect {} (side-эфект)
 	
-- [[#Side Effect]]
+- [[#Side Effect]] - для обычных функций подписавшихся на стейт напр. "println(state.amoount)"
 - [[#LaunchedEffect - для suspend]]
 - [[#DisposableEffect - аналог LaunchedEffect для callback]]
 - [[1_Lifecycle#derivedStateOf{}|derivedStateOf]]
@@ -45,7 +45,9 @@ fun KataScreen(){
 * лямбда SideEffect говорит фреймворку Composе
 * что этот код хотя и зависит от State,
 * но НЕ должен тригерить рекомпозицию !!!
-* и сам код SideEffect выполняться НЕ будет пока не произойдет рекомпозиция !!!
+* и сам код SideEffect НЕ будет выполняться пока не произойдет рекомпозиция !!!
+* 
+* !!! выполняется при каждой рекомпозиции.
 * 
 * таким образом:
 * SideEffect позволяет внутри @Composable выполнять обычные функции:

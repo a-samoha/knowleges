@@ -9,6 +9,7 @@
 ~$ apt list --installed | grep xfonts  -  find packages of interest
 ~$ apt list --installed > pkgsInstalled  -  сохранить список в файл
 ~$ dpkg -l > pkgsInstalledDetailed  -  сохранить ПОДРОБНЫЙ список в файл
+~$ dpkg -l | grep libqt6     -   какие версии Qt6 установлены
 ~$ dnf list installed
 ~$ flatpak list --app
 ~$ snap list
@@ -51,9 +52,13 @@
 ~$ trash-put file.jar            |  удалить файл  -  В КОРЗИНУ  (утилита `trash-cli`)
 
 ## Менеджеры пакетов
+
+~$ apt  -  Ubuntu (.deb)
+~$ snap help  -  отдельно
+~$ flatpak —help  -  отдельно
+
 ~$ rpm  -  Fedora, CentOS, openSuse
 ~$ dpkg  -  Debian  (.deb)
-~$ apt в  -  Ubuntu (.deb)
 ~$ pacman  -  Arch  (`Octopi` - gui для pacman)
 ~$ dnf   -   Fedora (змінив Yum)
 
@@ -72,6 +77,13 @@
 ~$ sudo snap install scrcpy 
      папка /home/samos/snap/scrcpy создается при каждом запуске приложения. Ее можно смело удалять.
 
+## Обновление пакетов
+~$ sudo apt update                       |  Update all packages
+~$ sudo apt full-upgrade              |  Upgrade all packages
+~$ sudo apt-get dist-upgrade      |  для использования в скриптах и автоматизации. 
+
+~$ sudo apt-get --fix-broken install          | Identify and Remove Conflicting Packages
+
 ## Удаление пакета
 
 ~$ dpkg --list                         |    To see all installed packages
@@ -79,16 +91,14 @@
 
 ~$ sudo apt purge scrcpy     |  uninstalls scrcpy and deletes all the configuration files
 ~$ sudo apt remove scrcpy  |  uninstalls scrcpy but not remove configuration files
-~$ sudo apt autoremove       | To remove any unused packages
-~$ sudo apt update               |  Update all packages
-~$ sudo apt full-upgrade      |  Upgrade all packages
-~$ sudo apt dist-upgrade
 
-~$ sudo apt clean                  |  If you’re short on space, you can use the “clean” 
-											command to remove downloaded archive files
+~$ sudo apt autoremove       |  Remove any unused "осиротевшие" packages
 
-~$ sudo apt-get --fix-broken install          | Identify and Remove Conflicting Packages
+~$ sudo apt autoclean           |  Удаление устаревших пакетов из кэша
+~$ sudo apt clean                  |  Полная очистка кэша
 
+
+## Браузер
 ~$ xdg-settings get default-web-browser  -  узнать какой сейчас дефолтный браузер
 ~$ xdg-settings set default-web-browser firefox.desktop -  засетить дефолтный браузер
 

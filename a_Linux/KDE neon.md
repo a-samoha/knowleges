@@ -17,7 +17,7 @@ Graphics: X11
 - загружаемся с флешки, подключаемся к wifi, ставим ОС
 - после установки :
   - $ **sudo apt update**
-  - $ **sudo apt dist-apgrade**
+  - $ **sudo apt full-apgrade** (если ручками) **sudo apt-get dist-apgrade** (если в скрипте)
   - меняем Global Theme: - Apple Venture Dark P6 + Edna (тут берем Colors & Window Decoration)
   - ставим Widow Rules:
   ![[Plasma_win_rules.png]]
@@ -58,12 +58,30 @@ Graphics: X11
 [.net Install the SDK](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2410#install-the-sdk)
 	~$  sudo apt update
 	~$  sudo apt-get install -y dotnet-sdk-8.0 
+    ~$  dotnet --version  -  проверить версию
 	[Hello World tutorial](https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/next)
+
+[QEMU/KVM (Kernel-based Virtual Machine)](https://developer.android.com/studio/run/emulator-acceleration)
+	Если ваш процессор поддерживает виртуализацию (**VT-x** для Intel, **AMD-V** для AMD)
+	**Установите QEMU и KVM**
+		~$  sudo apt install qemu-kvm virt-manager libvirt-daemon-system libvirt-clients bridge-utils
+		~$  sudo systemctl enable --now libvirtd
+	**Добавьте себя в группу KVM**
+		~$  sudo usermod -aG libvirt $(whoami)
+Запустите Virtual Machine Manager (virt-manager)
+		~$  virt-manager
+	Создай VM (RAM 8192, CPU 12, SATA  65,536; Display Spice Address port 5900; Video VGA or QXL)
+ Чтобы масштабировать окно VM  выполни в консоли (при рабоающей VM):
+         ~$ remote-viewer spice://localhost:5900
 
 Failed to load /snap/dotnet-sdk/168/shared/Microsoft.NETCore.App/6.0.5/libcoreclr.so, error: /lib/x86_64-linux-gnu/libpthread.so.0: version `GLIBC_PRIVATE' not found (required by /snap/core18/current/lib/x86_64-linux-gnu/librt.so.1)
 
 [OBS-studio](https://obsproject.com/ru)
 - $ **sudo apt install obs-studio**
+  - Sources: "Screen Capture(Pipe wire)"
+  - Left click on preview -> Transform -> Edit Transform
+	- Position Alignment: "Top Left"
+	- Bounding Box Type: "Stretch to bounds"
 ![[Pasted image 20230806212430.png]]
 
 [ntfs раздел открывается только на чтение](https://www.youtube.com/watch?v=3ooi4zo-mtU) 
@@ -84,7 +102,8 @@ Failed to load /snap/dotnet-sdk/168/shared/Microsoft.NETCore.App/6.0.5/libcorecl
 - клавиши переключения раскладки
   "Основные" - "нет"
   "Альтернативные" - "win+space"
-- Переназначение кнопок (SharpKeys):
+
+- **Переназначение кнопок на х11** (не работает на Wayland) (SharpKeys):
 	[StackExchange answer](https://askubuntu.com/a/257497)
 	Xev and xmodmap
 ~$ xev             |  запустит приложение, позволяющее узнать название кнопки
@@ -97,6 +116,21 @@ Failed to load /snap/dotnet-sdk/168/shared/Microsoft.NETCore.App/6.0.5/libcorecl
 
 ~$ xmodmap -pke > ~/.Xmodmap    //сохраняет карту изменений кнопок в файл
 ~$ xmodmap ~/.Xmodmap          //активирует эти изменения при след. входе
+
+- **Переназначение кнопок на Wayland** 
+~$ xev             |  запустит приложение, позволяющее узнать название кнопки
+            |  напр. "keycode 66 (keysym 0xffe5, Caps_Lock)""
+~$ sudo apt install input-remapper
+~$ sudo input-remapper-gtk
+		- AT Translated Set 2 keyboard
+		- Create new preset
+		- Set name: `plus-to-next`.
+		- Turn on `Autoload`
+		- Input: `Add`
+			- Record: target click btn `+`
+		- Output: `Key or Macro`
+			- Target : `keyboard`
+			- Print: `KP_Next`
 
 ##### Making changes persistent across reboots:
 ```
