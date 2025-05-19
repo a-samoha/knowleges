@@ -23,6 +23,7 @@
 -  You should **create a repository class for each different type of data**: 
 		e.g. `MoviesRepository` and `PaymentsRepository`
 
+![[Pasted image 20250504192315.png]]
 ###### General best practices
 - Don't store data in app components.
 - Persist as much relevant and fresh data as possible.

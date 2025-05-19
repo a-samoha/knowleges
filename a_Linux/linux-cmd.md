@@ -78,9 +78,13 @@
      папка /home/samos/snap/scrcpy создается при каждом запуске приложения. Ее можно смело удалять.
 
 ## Обновление пакетов
+~$ sudo pkcon update                 |   рекомендовано для KDE Neon (Обновило мне все пакеты)
+
 ~$ sudo apt update                       |  Update all packages
-~$ sudo apt full-upgrade              |  Upgrade all packages
+~$ sudo apt full-upgrade              |  Upgrade all packages (Обновляло НЕ все пакеты)
 ~$ sudo apt-get dist-upgrade      |  для использования в скриптах и автоматизации. 
+
+~$ apt list --upgradable                             | проверить (not upgraded) НЕобновленные пакеты 
 
 ~$ sudo apt-get --fix-broken install          | Identify and Remove Conflicting Packages
 

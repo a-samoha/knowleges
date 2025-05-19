@@ -1,2 +1,2 @@
-Go to [[Room]] notes
+Go to [[Android native]] notes
 

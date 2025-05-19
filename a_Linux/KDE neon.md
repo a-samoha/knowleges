@@ -12,15 +12,29 @@ Graphics: X11
 - качаем iso KDE neon
 - (win11) качаем Rufus или то, что предлагают на оф. сайте neon
    (KDE) сработал только         [balenaEtcher](https://etcher.balena.io/#download-etcher)          [storage](https://github.com/balena-io/etcher/releases)
-  ![[Pasted image 20230805093053.png]]
+		качаем    sudo apt install ./balena-etcher_version_amd64.deb
+		дабл клик по этому файлу.
+		откроется Discover и  устанавливаем
+![[Pasted image 20230805093053.png]]
 - создаём загрузочную флешку. (https://etcher.balena.io/)
 - загружаемся с флешки, подключаемся к wifi, ставим ОС
 - после установки :
   - $ **sudo apt update**
   - $ **sudo apt full-apgrade** (если ручками) **sudo apt-get dist-apgrade** (если в скрипте)
-  - меняем Global Theme: - Apple Venture Dark P6 + Edna (тут берем Colors & Window Decoration)
+  - меняем Global Theme:  Apple WhiteSur-dark (0.5M downloads)                  - Apple Venture Dark P6 + Edna (тут берем Colors & Window Decoration)
   - ставим Widow Rules:
   ![[Plasma_win_rules.png]]
+
+[Смонтировать диск в нужное место]()
+- ~$ sudo blkid                         | получить UUID всех физических разделов
+- ~$ sudo nano /etc/fstab       | открыть файл fstab на редактирование
+- записать в нем строки:
+	`UUID=6..f   /home/samos/develop   ext4    nofail   0 0`
+	`UUID=A...d  /home/samos/artsam    ntfs    nofail   0 0`
+
+[Установить подходящие драйвера]()
+- ~$ ubuntu-drivers devices
+- ~$ sudo ubuntu-drivers autoinstall //  ОПАСНО!!! В последний раз переустанавливал ОС
 
 [HotKeys]()
 - Ctrl + H  -  показать скрытые папки и файлы (напр.:   .gradle)
@@ -40,6 +54,26 @@ Graphics: X11
 - запускаем файл studio.sh правой кнопкой "Запустить в Konsole"
 - git clone лучше делать из консоли в нужной папке.
 - [Configure hardware acceleration for the Android Emulator](https://developer.android.com/studio/run/emulator-acceleration?utm_source=android-studio#vm-linux)
+- Ограничение памяти (при установке студии из flatpak):
+	~$ nano ~/.var/app/com.google.AndroidStudio/config/studio.vmoptions    | создать файл в указанной папке
+	в этом файле сохранить настройки (комментарии удалить):
+	```
+	-Xms4096m  // устанавливает начальный размер кучи JVM в 4 ГБ
+	-Xmx8192m  // устанавливает максимальный размер кучи JVM в 8 ГБ
+	-XX:ReservedCodeCacheSize=1024m  // размер кэширования скомпилированного кода
+	-XX:+UseCompressedOops // включает использование сжатых указателей (может снизить потребление памяти)
+	```
+	Metaspace — область памяти вне кучи (off-heap), для хранения метаданных классов, загружаемых JVM. Начиная с Java 8, Metaspace заменил PermGen и по умолчанию может автоматически расширяться, ограничиваясь только доступной физической памятью .
+	Потребление памяти Metaspace зависит от количества и сложности загружаемых классов. В типичных приложениях Metaspace использует от 50 до 300 МБ. Однако при работе с большими проектами или множеством плагинов, особенно в Android Studio, это значение может быть выше. 
+	Если возникнет необходимость в ограничении Metaspace, добавьте параметр `-XX:MaxMetaspaceSize=512m` (или другое подходящее значение).
+    Для большинства случаев рекомендуется НЕ устанавливать ограничение на размер Metaspace, позволяя JVM управлять им автоматически.
+	Добавьте следующую строку в файл `~/.bashrc`, или соответствующий файл конфигурации вашей оболочки:
+	```
+	export STUDIO_VM_OPTIONS=~/.var/app/com.google.AndroidStudio/config/studio.vmoptions
+	```
+	Затем примените изменения:
+	 - ~$ source ~/.bashrc
+
 
 [scrcpy]()
 - $ **sudo apt install scrcpy**

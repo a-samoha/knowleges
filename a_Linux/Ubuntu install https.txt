@@ -1,0 +1,110 @@
+
+-ВИДЕОКАРТА
+-графический сервер (Х11/Wayland) взаимодействует с видеокартой
+-Оконный менеджер (Metacity/kwin/xfwm4/openbox) взаимодействует с граф. сервером
+
+Оконный менеджер - приложение, которое отвечает за размещение, декорирование окон, взаимодействие с окнами - изменение размеров, максимизация, свёртывание, закрытие. 
+
+
+-окружениe рабочего стола (     Gnome       /  Cinnamon  KDE Plasma / XFCE  /  LXDE  )
+	Оконный менеджер     ( Metacity, Mutter /          kwin         / xfwm4 / openbox ) Mutter разработан в качестве альтернативы Metacity
+	файловый менеджер
+	поставщик фона
+	панель меню, инфо и времени (статусбар)
+	менеджер настроек
+	
+
+Установка окружения рабочего стола https://wiki.manjaro.org/index.php/Install_Desktop_Environments
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+sudo - утилита, позволяющая выполнить команду от имени root (суперпользователя)
+
+apt  - пакетный менеджер(DE). Управляет репозиториями, поиск/установка/обновление/удаление пакетов (приложений)
+pacman - пм в Arch.
+DNF (заменил Yum)  - пм в RedHat.
+
+snap    - утилита для управления пакетами (типа Apple store)
+flatpak - утилита для управления пакетами и
+flatpak vs snap - https://losst.pro/obzor-snap-vs-flatpack-vs-appimage
+
+update all packages in :
+	$sudo apt update       "синхронизировать репозитории" (и сторонние в том числе), ОС узнает, на какие пакеты доступны обновления. 
+	$sudo apt dist-upgrade "установит/обновит/удалит" нужные пакеты. 
+				upgrade без dist обновит только установленные пакеты и могут возникнуть проблемы с зависимостями. 
+	$sudo apt search telegram  найти все пакеты в имени которых используется слово "telegram"
+	$sudo apt remove telegram  удалит пакет, но останутся конфиг. файлы пользака. Если снова поставить телегу - будет казаться, что ничего не удалял
+	$sudo apt purge telegram   удалит и пакет и конфигурациооные файлы ИЛИ только файлы конфигурации если пакеты уже удалены.
+	$sudo apt autoremove       удалит пакеты зависимостей, которыми никто не пользуется.
+	$sudo apt autoclean        удаляет архивные файлы.
+	$sudo apt install -f       поченить зависимости, если "что-то пошло не так"
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Ubuntu install:
+	https://ubuntu.com/tutorials/install-ubuntu-desktop#11-dont-forget-to-update
+
+Ubuntu 24.04 + Wayland + Nvidia
+https://www.youtube.com/watch?v=G1b5e36Bt0Q
+https://www.if-not-true-then-false.com/2021/debian-ubuntu-linux-mint-nvidia-guide/4/
+- install Ubuntu 24.04
+- $sudo apt update 
+- $sudo apt dist-upgrade
+- $echo $XDG_SESSION_TYPE  -  видим на выходе Х11
+- $dpkg -l xwayland libxcb1 libnvidia-egl-wayland1  -  будет написано что не нашел пакет libnvidia-egl-wayland1 
+- $sudo apt install libnvidia-egl-wayland1          -  ставим пакет и проверяем командой выше.
+	# - $su ## OR ## sudo -i  -  переходим на выполнение команд от имени root (можно и без этого)
+- $sudo nano /etc/default/grub  -  открываем файл grub на редактирование.
+	GRUB_CMDLINE_LINUX="rhgb quiet rd.driver.blacklist=nouveau nvidia-drm.modeset=1"  приводим эту переменную к даноому виду
+	сохраняем файл grub
+- $sudo update-grub2  -  обновляем файл grub
+- reboot  -  перезагружаем комп (лучше выключить и включить)
+- $echo $XDG_SESSION_TYPE  -  видим на выходе Wayland
+Settings -> System -> About -> System Details видим:
+	Graphics1: "NVIDIA GeForce RTX 3070 Ti Laptop GPU"
+	Windowing System: "Wayland"
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+linuxscoop
+install -+-Relax-Plasma-Themes
+
+$ cd ~/Downloads
+$ git clone https://github.com/linuxscoop/Relax-Plasma-Themes.git
+$ cd /home/samos/Downloads/Relax-Plasma-Themes
+$ mkdir -p ~/.local/share/color-schemes && cp -Rv Relax\ Colorchemes/*.colors ~/.local/share/color-schemes/
+$ mkdir -p ~/.themes && cp -Rv Relax\ GTK\ Themes/* ~/.themes
+$ mkdir -p ~/.local/share/plasma/desktoptheme && cp -Rv Relax\ Plasma\ Themes/* ~/.local/share/plasma/desktoptheme/
+$ mkdir -p ~/.local/share/aurorae/themes && cp -Rv Relax\ Window\ Decorations/* ~/.local/share/aurorae/themes/
+$ mkdir -p ~/.local/share/konsole/ && cp -Rv Relax\ Konsole\ Colorscheme/* ~/.local/share/konsole/
+
+
+https://community.kde.org/Distributions
+https://linuxcapable.com/how-to-install-kde-plasma-on-ubuntu-linux/
+https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#5-tell-us-your-thoughts
+
+
+https://kubuntu.org/getkubuntu/
+https://ubuntu-mate.org/ru/download/
+
+
+Ubuntu Wayland: (https://pimylifeup.com/ubuntu-enable-wayland/)
+		https://pq.hosting/help/instructions/269-uznaem-wayland-ili-xorg.html
+		
+	$sudo nano /etc/gdm3/custom.conf   -  открыть конфиг файл на редактирование
+	WaylandEnable=true                 -  найти и разкоментировать строку
+	CTRL + X, Y, and then ENTER        -  сохранить и перезагрузиться.
+	
+	
+	МАСШТАБИРУЕМ МОНИТОР
+To Show Monitor name
+$ xrandr --listmonitors
+Monitors: 1
+0: +*eDP-1 1366/344x768/193+0+0 eDP-1
+
+To Reduce Monitor scale
+$ xrandr --output eDP-1 --scale 1.25x1.25
+
+
+ДИСТРИБУТИВЫ ЛИНУКС
+https://expertnov.ru/raznoe/vse-distributivy-linux-distributivy-linux-dlya-opytnyh-polzovatelej.html
