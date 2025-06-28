@@ -6,7 +6,7 @@ Pure function  -  при одних и тех же входных данных, 
 	- напр. лямбда Button ( onClick = {} ) это LaunchedEffect {} (side-эфект)
 	
 - [[#Side Effect]] - для обычных функций подписавшихся на стейт напр. "println(state.amoount)"
-- [[#LaunchedEffect - для suspend]]
+- [[#LaunchedEffect - для suspend или flow. Сдержит CoroutineScope]]
 - [[#DisposableEffect - аналог LaunchedEffect для callback]]
 - [[1_Lifecycle#derivedStateOf{}|derivedStateOf]]
 - snapshotFlow
@@ -160,7 +160,7 @@ fun KataScreen(){
 ```
 
 ### derivedStateOf{}  - генерация промежуточного стейт на основе originState
-	- выполняется при КАЖДОМ изменении originState
+	- выполняется при КАЖДОМ изменении state
 	- выполняется ПЕРЕД рекомпозицией
 ```kotlin
 @Composable
@@ -172,7 +172,7 @@ fun KataScreen(){
 			// этот блок выполняется ПЕРЕД рекомпозицией 
 			// потому, что здесь мы сами тригерим рекомпозицию
 			// посредством возврата нужного нам значения. напр.: 
-			originState / 3 
+			state / 3 
 			// этот код возвращает 
 				// при 0/3 -> 0
 				// при 1/3 -> 0 как мы помним 

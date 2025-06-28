@@ -164,7 +164,9 @@ object MukundaDestinations {
 }  
   
 /**  
- * Models the navigation actions in the app. */class MukundaNavigationActions(private val navController: NavHostController) {  
+ * Models the navigation actions in the app. 
+ */
+class MukundaNavigationActions(private val navController: NavHostController) {  
   
     fun navigateToTasks(userMessage: Int = 0) {  
         val navigatesFromDrawer = userMessage == 0  

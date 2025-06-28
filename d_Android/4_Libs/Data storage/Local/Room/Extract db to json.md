@@ -1,4 +1,4 @@
-
+###### Extract Database to Json in Downloads
 ```kotlin
 private fun exportDbToJson() {  
     val database = DatabaseAndroid.getInstance(this)  
@@ -53,4 +53,45 @@ private fun exportDbToJson() {
             }  
         }  
     }}
+```
+
+###### Import Database from Json
+```kotlin
+private suspend fun importDataFromJson(jsonString: String) {  
+    val gson = GsonBuilder()  
+        .registerTypeAdapter(AccountEntity::class.java, object :  
+            JsonDeserializer<AccountEntity> {  
+            override fun deserialize(  
+                json: JsonElement,  
+                typeOfT: Type,  
+                context: JsonDeserializationContext  
+            ): AccountEntity {  
+                val jsonObject = json.asJsonObject  
+  
+                return AccountEntity(  
+                    id = jsonObject["id"]?.asInt ?: 0,  
+                    title = jsonObject["title"]?.asString ?: "",  
+                    month = jsonObject["month"]?.asLong ?: 0L,  
+                    monthName = jsonObject["monthName"]?.asString  
+                        ?: (jsonObject["month"]?.asLong ?: 0L)  
+                            .toLocalDate()  
+                            .toCategoryMonthString(),  
+                    monthStartBalance = jsonObject["monthStartBalance"]?.asDouble ?: 0.0  
+                )  
+            }  
+        })  
+        .create()  
+    val exportData = gson.fromJson(jsonString, ExportData::class.java)  
+  
+    val database = DatabaseAndroid.getInstance(this)  
+    val accountDao = database.accountDao()  
+    val categoryDao = database.categoryDao()  
+    val transactionDao = database.transactionDao()  
+  
+    withContext(Dispatchers.IO) {  
+        accountDao.insertAllStrategyReplace(exportData.accounts)  
+        categoryDao.insertAllStrategyReplace(exportData.categories)  
+        transactionDao.insertAllStrategyReplace(exportData.transactions)  
+    }  
+}
 ```

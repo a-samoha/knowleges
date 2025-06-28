@@ -20,7 +20,7 @@ Graphics: X11
 - загружаемся с флешки, подключаемся к wifi, ставим ОС
 - после установки :
   - $ **sudo apt update**
-  - $ **sudo apt full-apgrade** (если ручками) **sudo apt-get dist-apgrade** (если в скрипте)
+  - $ **sudo apt full-upgrade** (если ручками) **sudo apt-get dist-upgrade** (если в скрипте)
   - меняем Global Theme:  Apple WhiteSur-dark (0.5M downloads)                  - Apple Venture Dark P6 + Edna (тут берем Colors & Window Decoration)
   - ставим Widow Rules:
   ![[Plasma_win_rules.png]]
@@ -54,6 +54,14 @@ Graphics: X11
 - запускаем файл studio.sh правой кнопкой "Запустить в Konsole"
 - git clone лучше делать из консоли в нужной папке.
 - [Configure hardware acceleration for the Android Emulator](https://developer.android.com/studio/run/emulator-acceleration?utm_source=android-studio#vm-linux)
+- Студия выжерает всю оперативную память (ставил из flatpak). Лечим:
+	  [Inotify Watches Limit (Linux)](https://youtrack.jetbrains.com/articles/SUPPORT-A-1715/Inotify-Watches-Limit-Linux)
+	  it is recommended to increase the watches limit (to, say, 1048576):
+		1. Add the following line to a new `*.conf` file (e.g. `idea.conf`) under `/etc/sysctl.d/` directory:  
+		    `fs.inotify.max_user_watches = 1048576`
+		2. Then run this command to apply the change:  
+		    `sudo sysctl -p --system`
+			And don't forget to restart your IDE.
 - Ограничение памяти (при установке студии из flatpak):
 	~$ nano ~/.var/app/com.google.AndroidStudio/config/studio.vmoptions    | создать файл в указанной папке
 	в этом файле сохранить настройки (комментарии удалить):
